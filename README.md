@@ -1,2 +1,2 @@
-###spacetimeprogramminglanguage.github.io
+###http://SpaceTimeProgrammingLanguage.github.io
 
