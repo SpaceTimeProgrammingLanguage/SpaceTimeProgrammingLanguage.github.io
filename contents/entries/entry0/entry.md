@@ -24,7 +24,7 @@ The Spacetime Operating Language
 ---
 
 *Inspired by LISP*
-*Inverted data structure of LISP*
+Inverted data structure of [S-expression](http://en.wikipedia.org/wiki/S-expression)
 
 ---
 ###Pair
