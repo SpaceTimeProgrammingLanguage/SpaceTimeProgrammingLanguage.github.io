@@ -127,6 +127,8 @@ The `function` : `plus2` is fundamentally some `Sequence`.
 
 `plus2` consists of a `Sequence` : **( plus (2) )**.
 
+**(2)** is an `attribute Sequence` of the `function`.
+
 ---
 ###Evaluation of a Sequence containing a function
 
@@ -145,14 +147,14 @@ The `function` : `plus2` is fundamentally some `Sequence`.
 
 Everything is `function` in *SpaceTime*.
 
-In this case, `3` is a `function` that maps a source : **(5)** to a target : **( 5 3 )**.
+In this case, `3` is a `function` that maps a source : **( 5 )** to a target : **( 5 3 )**.
 
 Consequently, since `function` is `Sequence` in *SpaceTime*, everything is `Sequence` in *SpaceTime*.
 
 Therefore, `3` is a `function` and at the same time, is a `Sequence`. 
 
 However, `3` is `3`. There is no other way to express than just `3` in *SpaceTime*.
-
+ 
  
  
 ---
