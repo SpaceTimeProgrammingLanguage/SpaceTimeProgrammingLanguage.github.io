@@ -8,7 +8,7 @@ The Spacetime Operating Language
 ***SpaceTime*** 
 #### - is a Functional Reactive Programming (FRP) language
 #### - employs Lazy evaluation strategy
-#### - runs on JavaScript (browser & node.js)
+#### - runs on JavaScript Engines (browsers & node.js)
 #### - is written in JavaScript
 
 ##Hello world
