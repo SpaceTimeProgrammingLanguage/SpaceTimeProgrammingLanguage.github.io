@@ -23,10 +23,10 @@ The Spacetime Operating Language
 ##Foundation
 ---
 
-*Inspired by LISP*
+*Inspired by John McCarthy's LISP*
+
 Inverted data structure of [S-expression](http://en.wikipedia.org/wiki/S-expression)
 
----
 ###Pair
 
 ![](http://localhost:18080/contents/img/pairentity.png)
