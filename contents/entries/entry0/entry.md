@@ -165,7 +165,10 @@ However, `3` is `3`. There is no other way to express than just `3` in *SpaceTim
 
 ![](http://localhost:18080/contents/img/functioncomposition.png)
 
-[Function composition](http://en.wikipedia.org/wiki/Function_composition) is naturally expressed in a form : **( source function fucnction )** in *SpaceTime*
+[Function composition](http://en.wikipedia.org/wiki/Function_composition) is naturally expressed in a form :
+**( *source function fucnction )** in *SpaceTime*. 
+
+Please note the `source` = **( 1 )** as a `Sequence`, not 1.
 
 ---
 ###1 +2 +3 = 6
