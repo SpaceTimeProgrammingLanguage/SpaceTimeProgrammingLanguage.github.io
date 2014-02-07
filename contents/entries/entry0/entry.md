@@ -2,9 +2,7 @@
 
 
 #SpaceTime Programming Language
-
-####*Inspired by LISP*
-####*Inverted data structure of LISP*
+The Spacetime Operating Language
 
 #### - Functional Language
 #### - Lazy Evaluation
@@ -23,6 +21,11 @@
 ```
 
 ##Foundation
+---
+
+*Inspired by LISP*
+*Inverted data structure of LISP*
+
 ---
 ###Pair
 
