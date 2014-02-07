@@ -60,7 +60,8 @@ When a `Pair` points objects: `a` and `b`, it's expressed as **{a b}** in `Pair 
 
 
 When a Pair points itself, since it's a form of [Self-reference](http://en.wikipedia.org/wiki/Self-reference), an  [Infinite recursion](http://en.wikipedia.org/wiki/Infinite_loop#Infinite_recursion) occurs. 
-Accordingly, the `Pair notaion` is { { {...} {...} } { {...} {...} } }, so we simply express `Empty Pair` as **{}**.
+
+Accordingly, the `Pair notaion` is { { {...} {...} } { {...} {...} } }, so we simply express the entity as **{ }**, and let's call it `Empty Pair`.
 
 ---
 ###Push Pair
