@@ -21,10 +21,12 @@ style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding
    (map (CONSOLE))
 )</div>
 
+You can try <font style ="color:#00ff00">1(+(2)</font> instead of <font style ="color:#00ff00">"Hello world"</font>
+
 <button id = "btn1" >Evaluate</button>
 
 <div id = "output1" style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"></div>
-
+<button id = "btn2" >Clear</button>
 
 ##Foundation
 ---

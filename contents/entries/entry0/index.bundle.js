@@ -1596,6 +1596,11 @@ var init = function()
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
+		})
+		.on('click', '#btn2', function()
+		{
+			$('output1')
+				.text('');
 		});
 
 };
