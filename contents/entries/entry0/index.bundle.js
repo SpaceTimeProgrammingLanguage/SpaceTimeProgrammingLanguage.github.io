@@ -1568,8 +1568,7 @@ M.$L(src1);
 M.map(src1, [M.MEMORY]);
 
 var cliks = $('#btn1')
-	.asEventStream('click')
-	.onValue(function(val)
+	.on('click', function()
 	{
 		var src = $('#input1')
 			.text();
