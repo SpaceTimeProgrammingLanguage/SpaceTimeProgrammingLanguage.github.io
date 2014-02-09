@@ -21,12 +21,9 @@ style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding
    (map (CONSOLE))
 )</div>
 
-You can try&nbsp;
-<font
-style = "color:#00ff00;background-color:#000000;">1(+(2))</font>
-&nbsp;instead of&nbsp;
-<font
-style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .
+You can try&nbsp;<font
+style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; ...
+
 <button id = "btn1" >Evaluate</button>
 
 <div id = "output1" style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"></div>
