@@ -810,6 +810,8 @@ module.exports = iterate;
 var M = {};
 module.exports = M;
 
+var OUT;
+
 M.debug = false; //just default, change this value @ test or app.js
 var $W = M.$W = function(msg)
 {
@@ -944,6 +946,7 @@ var $content = M.$content = function(seq)
 
 M.map = function(src, atr, out)
 {
+	var OUT = out;
 	$L('map');
 	$L(src);
 	$L(atr);
@@ -1065,7 +1068,7 @@ M.map = function(src, atr, out)
 		return true;
 	};
 
-	var $mapCONSOLE = function(src, out)
+	var $mapCONSOLE = function(src)
 	{
 		//$L(' ---$mapCONSOLE  fn ----- ');
 
@@ -1074,7 +1077,7 @@ M.map = function(src, atr, out)
 		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
 		M.$W(M.$content(result)); //side effect
 
-		$(out)
+		$(OUT)
 			.text(result);
 
 		return result;
@@ -1090,8 +1093,7 @@ M.map = function(src, atr, out)
 	}
 	if ($content(atr) === CONSOLE)
 	{
-		alert(out);
-		return $mapCONSOLE(src, out);
+		return $mapCONSOLE(src);
 	}
 
 };
