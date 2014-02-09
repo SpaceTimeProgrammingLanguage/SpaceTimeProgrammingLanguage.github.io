@@ -15,7 +15,7 @@ The Spacetime Operating Language
 ---
 
 <div id = "input1" contenteditable="true" 
-style = "height:40px;width: 500px;color:#00ff00;background-color:#000000;padding:5px;"
+style = "height:40px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"
 >(
    "Hello world"
    (map (CONSOLE))
@@ -23,7 +23,7 @@ style = "height:40px;width: 500px;color:#00ff00;background-color:#000000;padding
 
 <button id = "btn1" >Evaluate</button>
 
-<div id = "output1" style = "height:40px;width: 500px;color:#00ff00;background-color:#000000;padding:5px;"></div>
+<div id = "output1" style = "height:40px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"></div>
 
 
 ##Foundation
