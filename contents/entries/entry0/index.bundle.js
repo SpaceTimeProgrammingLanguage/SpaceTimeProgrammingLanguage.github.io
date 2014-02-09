@@ -1090,6 +1090,7 @@ M.map = function(src, atr, out)
 	}
 	if ($content(atr) === CONSOLE)
 	{
+		alert(out);
 		return $mapCONSOLE(src, out);
 	}
 
