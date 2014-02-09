@@ -23,7 +23,7 @@ The Spacetime Operating Language
 ```
 
 <div id = "input1" contenteditable="true" 
-style = "width: 600px;background-color:#000000"
+style = "height:40px;width: 500px;color:#00ff00;background-color:#000000"
 >(
    "Hello world"
    (map (CONSOLE))
@@ -31,7 +31,7 @@ style = "width: 600px;background-color:#000000"
 
 <button id = "btn1" >Evaluate</button>
 
-<div id = "output1" style = "width: 600px;background-color:#000000">&nbsp;</div>
+<div id = "output1" style = "height:40px;width: 500px;color:#00ff00;background-color:#000000"></div>
 
 
 ##Foundation
