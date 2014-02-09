@@ -6,14 +6,10 @@ $(document)
 
 var init = function()
 {
-  alert('sdfs');
-
 
   $(document)
     .on('click', '#btn1', function()
     {
-      alert('btn clicked');
-      M.$W('btn clicked');
       var src = $('#input1')
         .text();
       alert(src);
