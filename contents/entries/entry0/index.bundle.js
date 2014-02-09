@@ -1090,7 +1090,7 @@ M.map = function(src, atr, out)
 	}
 	if ($content(atr) === CONSOLE)
 	{
-		return $mapCONSOLE(src);
+		return $mapCONSOLE(src, out);
 	}
 
 };
@@ -1584,7 +1584,7 @@ var init = function()
 		{
 			var src = $('#input1')
 				.text();
-			alert(src);
+
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
