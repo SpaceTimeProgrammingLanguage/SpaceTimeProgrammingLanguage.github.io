@@ -22,14 +22,18 @@ The Spacetime Operating Language
 
 ```
 
-<div id = "input1" contenteditable="true">(
+<div id = "input1" contenteditable="true" 
+style = "width: 600px;background-color:#000000"
+>(
    "Hello world"
    (map (CONSOLE))
 )</div>
 
 <button id = "btn1" >Evaluate</button>
 
-<div id = "output1"> </div>
+<div id = "output1" style = "width: 600px;background-color:#000000">&nbsp;</div>
+
+
 ##Foundation
 ---
 
