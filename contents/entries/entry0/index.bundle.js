@@ -6,12 +6,13 @@ $(document)
 
 var init = function()
 {
-
   alert('sdfs');
-  $('#btn1')
-    .on('click', function()
+
+
+  $(document)
+    .on('click', '#btn1', function()
     {
-      console.log('btn clicked');
+      alert('btn clicked');
       M.$W('btn clicked');
       var src = $('#input1')
         .text();
@@ -22,4 +23,6 @@ var init = function()
         .text(result);
 
     });
+
+
 };
