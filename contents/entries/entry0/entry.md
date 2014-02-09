@@ -21,16 +21,14 @@ style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding
    (map (CONSOLE))
 )</div>
 
-You can try 
-<div id = "input1" 
+You can try &nbsp;
+<font
 style = "color:#00ff00;background-color:#000000;"
->1(+(2)</div>
-
- instead of 
-<div id = "input1" 
+>1(+(2))</font>
+ instead of &nbsp;
+<font
 style = "color:#00ff00;background-color:#000000;"
->"Hello world"</div> 
-
+>"Hello world"</font> .
 <button id = "btn1" >Evaluate</button>
 
 <div id = "output1" style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"></div>
