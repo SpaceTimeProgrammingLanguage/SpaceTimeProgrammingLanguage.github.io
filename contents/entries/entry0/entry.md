@@ -22,6 +22,14 @@ The Spacetime Operating Language
 
 ```
 
+<div id = "input1" contenteditable="true">(
+   "Hello world"
+   (map (CONSOLE))
+)</div>
+
+<button id = "btn1" >Evaluate</button>
+
+<div id = "output1"> </div>
 ##Foundation
 ---
 

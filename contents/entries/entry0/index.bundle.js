@@ -1543,7 +1543,7 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 module.exports = loadModulesFactory;
 },{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/SEQ.js":7,"./SpaceTime_Functions/doNothing.js":8,"./SpaceTime_Functions/ifF.js":9,"./SpaceTime_Functions/iterate.js":10,"./SpaceTime_Functions/minus.js":12,"./SpaceTime_Functions/plus.js":13,"./SpaceTime_Functions/take.js":14}],17:[function(require,module,exports){
 /* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
+/* global $, describe, it, before, beforeEach, after, afterEach */
 
 'use strict';
 
@@ -1566,4 +1566,17 @@ var src1 = M.parse(M.trim(src));
 M.$L('src1 to mamMemory');
 M.$L(src1);
 M.map(src1, [M.MEMORY]);
+
+var cliks = $('#btn1')
+	.asEventStream('click')
+	.onValue(function(val)
+	{
+		var src = $('#input1')
+			.text();
+		var src1 = M.parse(M.trim(src));
+		var result = M.map(src1, [M.MEMORY]);
+		$('#output1')
+			.text(result);
+
+	});
 },{"../../app.js":15}]},{},[17])
