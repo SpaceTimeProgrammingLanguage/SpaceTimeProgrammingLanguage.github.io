@@ -7,7 +7,7 @@ $(document)
 var init = function()
 {
 
-  alert();
+  alert('sdfs');
   $('#btn1')
     .on('click', function()
     {
