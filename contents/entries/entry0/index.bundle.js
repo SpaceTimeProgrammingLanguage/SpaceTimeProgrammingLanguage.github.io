@@ -1570,6 +1570,7 @@ M.map(src1, [M.MEMORY]);
 var cliks = $('#btn1')
 	.on('click', function()
 	{
+		M.$W('btn clicked');
 		var src = $('#input1')
 			.text();
 		var src1 = M.parse(M.trim(src));
