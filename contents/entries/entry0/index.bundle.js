@@ -1,12 +1,13 @@
 $(document)
   .ready(function()
   {
-    alert();
     init();
   });
 
 var init = function()
 {
+
+  alert();
   $('#btn1')
     .on('click', function()
     {
