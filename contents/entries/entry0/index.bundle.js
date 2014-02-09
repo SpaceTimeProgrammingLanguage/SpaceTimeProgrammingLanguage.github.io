@@ -1599,7 +1599,7 @@ var init = function()
 		})
 		.on('click', '#btn2', function()
 		{
-			$('output1')
+			$('#output1')
 				.text('');
 		});
 
