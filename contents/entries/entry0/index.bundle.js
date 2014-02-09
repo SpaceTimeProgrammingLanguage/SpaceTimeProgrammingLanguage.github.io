@@ -946,8 +946,12 @@ var $content = M.$content = function(seq)
 
 M.map = function(src, atr, out)
 {
-	var OUT = out;
-	alert(out);
+
+	if (typeof out !== 'undefined')
+	{
+		OUT = out;
+	}
+
 	$L('map');
 	$L(src);
 	$L(atr);
