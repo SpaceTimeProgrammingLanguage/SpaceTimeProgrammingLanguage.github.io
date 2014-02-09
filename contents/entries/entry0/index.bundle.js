@@ -803,7 +803,7 @@ var iterate = function(src, likeFibf)
 module.exports = iterate;
 },{"./map":11}],11:[function(require,module,exports){
 /* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
+/* global $,describe, it, before, beforeEach, after, afterEach */
 
 'use strict';
 
@@ -942,7 +942,7 @@ var $content = M.$content = function(seq)
 	return seq[0];
 };
 
-M.map = function(src, atr)
+M.map = function(src, atr, out)
 {
 	$L('map');
 	$L(src);
@@ -1065,7 +1065,7 @@ M.map = function(src, atr)
 		return true;
 	};
 
-	var $mapCONSOLE = function(src)
+	var $mapCONSOLE = function(src, out)
 	{
 		//$L(' ---$mapCONSOLE  fn ----- ');
 
@@ -1073,6 +1073,9 @@ M.map = function(src, atr)
 
 		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
 		M.$W(M.$content(result)); //side effect
+
+		$(out)
+			.text(result);
 
 		return result;
 	};
@@ -1583,9 +1586,7 @@ var init = function()
 				.text();
 			alert(src);
 			var src1 = M.parse(M.trim(src));
-			var result = M.map(src1, [M.MEMORY]);
-			$('#output1')
-				.text(result);
+			var result = M.map(src1, [M.MEMORY], '#output1');
 
 		});
 
