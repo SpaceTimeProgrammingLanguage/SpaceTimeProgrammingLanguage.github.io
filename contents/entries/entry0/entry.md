@@ -14,16 +14,16 @@ The Spacetime Operating Language
 ##Hello world
 ---
 
-<div id = "input1" contenteditable = "true"
+<textbox id = "input1" 
 style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 >(
    "Hello world"
    (map (CONSOLE))
-)</div>
+)</textbox>
 
 <button id = "btn1" >Evaluate</button>
 
-<pre id = "output1" style = "height:50px;width: 500px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></pre>
+<textbox id = "output1" style = "height:50px;width: 500px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textbox>
 <button id = "btn2" >Clear</button>
 
 You can try&nbsp;<font
