@@ -1129,10 +1129,10 @@ M.map = function(src, atr, out)
 		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
 		M.$W(output1); //side effect
 
-		var content = $(OUT)
-			.html();
 		if (typeof $ !== 'undefined')
 		{
+			var content = $(OUT)
+				.html();
 			$(OUT)
 				.html(content + output1 + '<br>');
 		}
@@ -1425,14 +1425,15 @@ module.exports = take;
            var src5 = src4.replaceAll('\n', ' '); //linebreak -> single space
 
            var src6 = src5.replace(/(\S)\(/g, '$1 ('); //foo(  -> foo (
+           var src7 = src6.replace(/\)(\S)/g, ') $1'); //)foo  -> ) foo 
 
-           var src7 = src6.replace(/[　\s]+/g, ' '); // trim extra spaces
-           var src8 = src7.replace(/(\()\s+|\s+(\))/g, '$1$2'); //trim a space after '(' and before ')'.
-           var src9 = src8.replace(/(\[)\s+|\s+(\])/g, '$1$2'); //trim a space after '[' and before ']'.
+           var src8 = src7.replace(/[　\s]+/g, ' '); // trim extra spaces
+           var src9 = src8.replace(/(\()\s+|\s+(\))/g, '$1$2'); //trim a space after '(' and before ')'.
+           var src10 = src9.replace(/(\[)\s+|\s+(\])/g, '$1$2'); //trim a space after '[' and before ']'.
 
 
 
-           return src9;
+           return src10;
 
          };
 
@@ -1561,7 +1562,7 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '((2 (4) "hi") (map(CONSOLE)) ) ';
+         var src = '((1 2( 3 (4) 9)0 )  (map (CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
