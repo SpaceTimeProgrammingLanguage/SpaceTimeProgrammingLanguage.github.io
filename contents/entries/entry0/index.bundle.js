@@ -1643,19 +1643,20 @@ $(document)
 
 var init = function()
 {
-	var setCursorToEnd = function(ele)
-	{
-		var range = document.createRange();
-		var sel = window.getSelection();
-		range.setStart(ele, 1);
-		range.collapse(true);
-		sel.removeAllRanges();
-		sel.addRange(range);
-		ele.focus();
-	};
-
+	var setCursorToEnd;
 	setTimeout(function()
 	{
+		setCursorToEnd = function(ele)
+		{
+			var range = document.createRange();
+			var sel = window.getSelection();
+			range.setStart(ele, 1);
+			range.collapse(true);
+			sel.removeAllRanges();
+			sel.addRange(range);
+			ele.focus();
+		};
+
 		setCursorToEnd($('#input1'));
 	}, 2000);
 
