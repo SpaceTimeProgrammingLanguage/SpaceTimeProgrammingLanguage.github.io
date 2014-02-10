@@ -1595,7 +1595,8 @@ $(document)
 
 var init = function()
 {
-
+	$('#input1')
+		.focus();
 	$(document)
 		.on('click', '#btn1', function()
 		{
@@ -1605,11 +1606,17 @@ var init = function()
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
+			$('#input1')
+				.focus();
+
 		})
 		.on('click', '#btn2', function()
 		{
 			$('#output1')
 				.text('');
+
+			$('#input1')
+				.focus();
 		});
 
 };
