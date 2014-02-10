@@ -1656,10 +1656,10 @@ var init = function()
 			$('#output1')
 				.text('');
 
-			var src = $('#input1')
-				.text();
+			//var src = $('#input1')
+			//	.text();
 
-
+			var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
 			var src1 = M.parse(M.trim(src));
 			console.log('src1 to mamMemory');
 			console.log(src1);
