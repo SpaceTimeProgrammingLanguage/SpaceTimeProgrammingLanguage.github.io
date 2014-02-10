@@ -1642,7 +1642,7 @@ module.exports = loadModulesFactory;
 
 var debug = false;
 
-var M = require('../../app.js');
+var M = require('/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js');
 
 $(document)
 	.ready(function()
@@ -1702,5 +1702,5 @@ $.fn.focusEnd = function()
 	$(this)
 		.val(value);
 	return this;
-}
-},{"../../app.js":15}]},{},[17])
+};
+},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":15}]},{},[17])
