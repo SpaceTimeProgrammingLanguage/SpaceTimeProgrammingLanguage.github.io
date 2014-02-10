@@ -1134,7 +1134,7 @@ M.map = function(src, atr, out)
 			var content0 = $(OUT)
 				.text();
 			$(OUT)
-				.text(content0 + '\n' + output1);
+				.text(content0 + '<br>' + output1);
 		}
 
 		return result;
