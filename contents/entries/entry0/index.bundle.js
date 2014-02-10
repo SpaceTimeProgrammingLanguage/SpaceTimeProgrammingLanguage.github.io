@@ -1643,21 +1643,10 @@ $(document)
 
 var init = function()
 {
-	var setCursorToEnd;
 	setTimeout(function()
 	{
-		setCursorToEnd = function(ele)
-		{
-			var range = document.createRange();
-			var sel = window.getSelection();
-			range.setStart(ele, 1);
-			range.collapse(true);
-			sel.removeAllRanges();
-			sel.addRange(range);
-			ele.focus();
-		};
-
-		setCursorToEnd($('#input1'));
+		$('#input1')
+			.focusEnd();
 	}, 2000);
 
 	$(document)
@@ -1672,7 +1661,8 @@ var init = function()
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
-			setCursorToEnd($('#input1'));
+			$('#input1')
+				.focusEnd();
 
 		})
 		.on('click', '#btn2', function()
@@ -1680,8 +1670,38 @@ var init = function()
 			$('#output1')
 				.text('');
 
-			setCursorToEnd($('#input1'));
+			$('#input1')
+				.focusEnd();
 		});
 
 };
+
+
+$.fn.focusEnd = function()
+{
+	$(this)
+		.focus();
+	var tmp = $('<span />')
+		.appendTo($(this)),
+		node = tmp.get(0),
+		range = null,
+		sel = null;
+
+	if (document.selection)
+	{
+		range = document.body.createTextRange();
+		range.moveToElementText(node);
+		range.select();
+	}
+	else if (window.getSelection)
+	{
+		range = document.createRange();
+		range.selectNode(node);
+		sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(range);
+	}
+	tmp.remove();
+	return this;
+}
 },{"../../app.js":15}]},{},[17])
