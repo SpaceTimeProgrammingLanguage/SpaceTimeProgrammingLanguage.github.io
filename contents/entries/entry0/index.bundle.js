@@ -1563,7 +1563,7 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 module.exports = loadModulesFactory;
 },{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/SEQ.js":7,"./SpaceTime_Functions/doNothing.js":8,"./SpaceTime_Functions/ifF.js":9,"./SpaceTime_Functions/iterate.js":10,"./SpaceTime_Functions/minus.js":12,"./SpaceTime_Functions/plus.js":13,"./SpaceTime_Functions/take.js":14}],17:[function(require,module,exports){
 /* jslint node: true */
-/* global $, document, alert, describe, it, before, beforeEach, after, afterEach */
+/* global jQuery,$, document, alert, describe, it, before, beforeEach, after, afterEach */
 
 'use strict';
 
@@ -1595,18 +1595,12 @@ $(document)
 
 var init = function()
 {
-	var focusLine = function(el)
-	{
-		el.focus(); //sets focus to element
-		var val = el.text(); //store the value of the element
-		el.text(''); //clear the value of the element
-		el.text(val); //set that value back.
-	};
 
 	setTimeout(function()
 	{
-		focusLine($('#input1'));
-	}, 3000);
+		$('#input1')
+			.putCursorAtEnd();
+	}, 2000);
 
 	$(document)
 		.on('click', '#btn1', function()
@@ -1617,7 +1611,8 @@ var init = function()
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
-			focusLine($('#input1'));
+			$('#input1')
+				.putCursorAtEnd();
 
 		})
 		.on('click', '#btn2', function()
@@ -1625,8 +1620,46 @@ var init = function()
 			$('#output1')
 				.text('');
 
-			focusLine($('#input1'));
+			$('#input1')
+				.putCursorAtEnd();
 		});
 
 };
+
+(function($)
+{
+	jQuery.fn.putCursorAtEnd = function()
+	{
+		return this.each(function()
+		{
+			$(this)
+				.focus();
+
+			// If this function exists...
+			if (this.setSelectionRange)
+			{
+				// ... then use it
+				// (Doesn't work in IE)
+
+				// Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
+				var len = $(this)
+					.val()
+					.length * 2;
+				this.setSelectionRange(len, len);
+			}
+			else
+			{
+				// ... otherwise replace the contents with itself
+				// (Doesn't work in Google Chrome)
+				$(this)
+					.val($(this)
+						.val());
+			}
+
+			// Scroll to the bottom, in case we're in a tall textarea
+			// (Necessary for Firefox and Google Chrome)
+			this.scrollTop = 999999;
+		});
+	};
+})(jQuery);
 },{"../../app.js":15}]},{},[17])
