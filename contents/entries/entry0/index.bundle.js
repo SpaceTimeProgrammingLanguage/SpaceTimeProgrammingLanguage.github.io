@@ -1576,8 +1576,8 @@ module.exports = take;
 
          M.debug = false;
          var src1 = parse(trim(src));
-         //console.log('src1 to mamMemory');
-         // console.log(src1);
+         console.log('src1 to mamMemory');
+         console.log(src1);
          M.map(src1, [M.MEMORY]);
 
 
@@ -1659,8 +1659,16 @@ var init = function()
 			var src = $('#input1')
 				.text();
 
+
 			var src1 = M.parse(M.trim(src));
-			var result = M.map(src1, [M.MEMORY], '#output1');
+			console.log('src1 to mamMemory');
+			console.log(src1);
+			M.map(src1, [M.MEMORY]);
+
+
+
+			//	var src1 = M.parse(M.trim(src));
+			//	var result = M.map(src1, [M.MEMORY], '#output1');
 
 			$('#input1')
 				.focusEnd();
