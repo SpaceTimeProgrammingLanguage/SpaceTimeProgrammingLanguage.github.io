@@ -14,12 +14,12 @@ The Spacetime Operating Language
 ##Hello world
 ---
 
-<input id = "input1" 
+<div id = "input1" 
 style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"
 >(
    "Hello world"
    (map (CONSOLE))
-)</input>
+)</div>
 
 <button id = "btn1" >Evaluate</button>
 
