@@ -1132,9 +1132,9 @@ M.map = function(src, atr, out)
 		if (typeof $ !== 'undefined')
 		{
 			var content = $(OUT)
-				.html();
+				.text();
 			$(OUT)
-				.html(content + output1 + '<br>');
+				.text(content + output1 + '\n');
 		}
 
 		return result;
@@ -1656,10 +1656,10 @@ var init = function()
 			$('#output1')
 				.text('');
 
-			//var src = $('#input1')
-			//	.text();
+			var src = $('#input1')
+				.text();
 
-			var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
+			//	var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
 
 
 			var src1 = M.parse(M.trim(src));
