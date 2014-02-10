@@ -27,7 +27,7 @@ style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding
 <button id = "btn2" >Clear</button>
 
 You can try&nbsp;<font
-style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; ...
+style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .
 
 ##Foundation
 ---
