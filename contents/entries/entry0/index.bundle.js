@@ -1647,7 +1647,7 @@ var init = function()
 	setTimeout(function()
 	{
 		$('#input1')
-			.attr('value', '("Hello world"  (map (CONSOLE)) )');
+			.val('("Hello world"  (map (CONSOLE)) )');
 
 		$('#input1')
 			.focusEnd();
@@ -1657,10 +1657,10 @@ var init = function()
 		.on('click', '#btn1', function()
 		{
 			$('#output1')
-				.attr('value', '');
+				.val('');
 
 			var src = $('#input1')
-				.attr('value');
+				.val();
 
 			var src1 = M.parse(M.trim(src));
 
@@ -1676,7 +1676,7 @@ var init = function()
 		.on('click', '#btn2', function()
 		{
 			$('#output1')
-				.attr('value', '');
+				.val('');
 
 			$('#input1')
 				.focusEnd();
