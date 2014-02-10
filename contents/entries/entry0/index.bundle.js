@@ -1134,7 +1134,7 @@ M.map = function(src, atr, out)
 			var content = $(OUT)
 				.val();
 			$(OUT)
-				.val(content + "hihu   ihiu" + '\n');
+				.val(content + output1 + '\n');
 		}
 
 		return result;
@@ -1562,7 +1562,7 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
+         var src = '( "hhi" (map (    CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
@@ -1647,7 +1647,7 @@ var init = function()
 	setTimeout(function()
 	{
 		$('#input1')
-			.val('("Hello world"  (map (CONSOLE)) )');
+			.attr('value', '("Hello world"  (map (CONSOLE)) )');
 
 		$('#input1')
 			.focusEnd();
@@ -1657,13 +1657,10 @@ var init = function()
 		.on('click', '#btn1', function()
 		{
 			$('#output1')
-				.text('');
+				.attr('value', '');
 
-			//var src = $('#input1')
-			//	.text();
-
-			var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
-
+			var src = $('#input1')
+				.attr('value');
 
 			var src1 = M.parse(M.trim(src));
 
@@ -1679,7 +1676,7 @@ var init = function()
 		.on('click', '#btn2', function()
 		{
 			$('#output1')
-				.text('');
+				.attr('value', '');
 
 			$('#input1')
 				.focusEnd();
