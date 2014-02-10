@@ -33,7 +33,8 @@ style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of
 
 *Inspired by John McCarthy's LISP*
 
-Inverted data structure of [S-expression](http://en.wikipedia.org/wiki/S-expression)
+*SpaceTime* is founded on an inverted data structure of
+[Singly linked list](http://en.wikipedia.org/wiki/Singly_linked_list#Singly_linked_list) and [S-expression](http://en.wikipedia.org/wiki/S-expression).
 
 ###Pair
 
