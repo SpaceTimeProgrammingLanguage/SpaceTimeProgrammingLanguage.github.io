@@ -1643,7 +1643,7 @@ var init = function()
 
 				// Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
 				var len = $(this)
-					.val()
+					.text()
 					.length * 2;
 				this.setSelectionRange(len, len);
 			}
@@ -1652,8 +1652,8 @@ var init = function()
 				// ... otherwise replace the contents with itself
 				// (Doesn't work in Google Chrome)
 				$(this)
-					.val($(this)
-						.val());
+					.text($(this)
+						.text());
 			}
 
 			// Scroll to the bottom, in case we're in a tall textarea
