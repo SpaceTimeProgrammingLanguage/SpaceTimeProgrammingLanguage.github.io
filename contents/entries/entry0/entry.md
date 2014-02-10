@@ -15,7 +15,7 @@ The Spacetime Operating Language
 ---
 
 <div id = "input1" contenteditable = "true"
-style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"
+style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 >(
    "Hello world"
    (map (CONSOLE))
