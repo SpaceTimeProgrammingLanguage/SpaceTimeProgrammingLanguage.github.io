@@ -1073,44 +1073,44 @@ M.map = function(src, atr, out)
 		return true;
 	};
 
+	var $construct = M.$construct = function(result)
+	{
+		var result1;
+		if ($type(result) === 'Array')
+		{
+			result1 = '( ';
+			for (var i = 0; i < result.length; i++)
+			{
+				result1 += $construct(result[i]);
+				result1 += ' ';
+			}
+
+			result1 += ')';
+		}
+		else if ($type(result) === 'String')
+		{
+			result1 = '"' + result + '"';
+		}
+		else if ($type(result) === 'Function')
+		{
+			result1 = 'Function';
+		}
+		else
+		{
+			result1 = result;
+		}
+
+		return result1;
+	};
+
 	var $mapCONSOLE = function(src)
 	{
 		//$L(' ---$mapCONSOLE  fn ----- ');
 
 		var result = $mapMEMORY(src);
 
-		var parse = function(result)
-		{
-			var result1;
-			if ($type(result) === 'Array')
-			{
-				result1 = '( ';
-				for (var i = 0; i < result.length; i++)
-				{
-					result1 += parse(result[i]);
-					result1 += ' ';
-				}
-
-				result1 += ')';
-			}
-			else if ($type(result) === 'String')
-			{
-				result1 = '"' + result + '"';
-			}
-			else if ($type(result) === 'Function')
-			{
-				result1 = 'Function';
-			}
-			else
-			{
-				result1 = result;
-			}
-
-			return result1;
-		};
-
 		M.$L(M.$content(result));
-		var output = parse(M.$content(result));
+		var output = $parse(M.$content(result));
 
 		var output1;
 
@@ -1361,7 +1361,7 @@ module.exports = take;
            return src1[src1.length - 1];
          };
 
-         var trim = M.trim = function(src)
+         var $trim = M.$trim = function(src)
          {
 
            var strgs = src.match(/"(?:[^\\"]|\\.)*"/ig);
@@ -1439,7 +1439,7 @@ module.exports = take;
 
 
 
-         var parse = M.parse = function(src)
+         var $parse = M.$parse = function(src)
          {
            M.$L('------------- parse ----------------');
            M.$L(src);
@@ -1537,15 +1537,15 @@ module.exports = take;
                {
                  if (j === 0)
                  {
-                   array[array.length] = parse(src.substring(indexHead + 1, space[j]));
+                   array[array.length] = $parse(src.substring(indexHead + 1, space[j]));
                  }
                  if (j === space.length - 1)
                  {
-                   array[array.length] = parse(src.substring(space[j] + 1, indexTail));
+                   array[array.length] = $parse(src.substring(space[j] + 1, indexTail));
                  }
                  else
                  {
-                   array[array.length] = parse(src.substring(space[j] + 1, space[j + 1]));
+                   array[array.length] = $parse(src.substring(space[j] + 1, space[j + 1]));
                  }
                }
                //wt('---return');
@@ -1562,7 +1562,7 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-    var src = '( "hihu   ihi" (map (    CONSOLE)) ) ';
+         var src = '( "hihu   ihi" (map (    CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
@@ -1575,7 +1575,7 @@ module.exports = take;
          )*/
 
          M.debug = false;
-         var src1 = parse(trim(src));
+         var src1 = $parse($trim(src));
          console.log('src1 to mamMemory');
          console.log(src1);
          M.map(src1, [M.MEMORY]);
@@ -1631,7 +1631,7 @@ var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
          )*/
 
 M.debug = false;
-var src1 = M.parse(M.trim(src));
+var src1 = M.$parse(M.trim(src));
 M.$L('src1 to mamMemory');
 M.$L(src1);
 M.map(src1, [M.MEMORY]);
@@ -1644,11 +1644,11 @@ $(document)
 
 var init = function()
 {
-	$('#input1')
-		.val('("Hello world"  (map (CONSOLE)) )');
 
 	setTimeout(function()
 	{
+		$('#input1')
+			.val('("Hello world"  (map (CONSOLE)) )');
 		$('#input1')
 			.focusEnd();
 
@@ -1669,7 +1669,7 @@ var init = function()
 		var src = $('#input1')
 			.val();
 
-		var src1 = M.parse(M.trim(src));
+		var src1 = M.$parse(M.trim(src));
 
 		//console.log('src1 to mamMemory');
 		//console.log(src1);
@@ -1677,7 +1677,7 @@ var init = function()
 		var result = M.map(src1, [M.MEMORY], '#console1');
 
 		$('#evaluation1')
-			.val(result);
+			.val(M.$construct(result));
 	};
 
 };
