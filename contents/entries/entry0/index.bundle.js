@@ -1654,7 +1654,7 @@ var init = function()
 	}, 1000);
 
 	$(document)
-		.on('change', '#input1', function()
+		.on('input propertychange', '#input1', function()
 		{
 			$('#console1')
 				.val('');
