@@ -197,6 +197,8 @@ Please note the `source` = **( 1 )** as a `Sequence`, not 1.
 
 ![](http://localhost:18080/contents/img/plust1and23.png)
 
+( 1 (+ ( 2 (+ ( 3 ) ) ) ) )  =  ( 6 )
+
 ---
 ###Indefinite sequence
 
