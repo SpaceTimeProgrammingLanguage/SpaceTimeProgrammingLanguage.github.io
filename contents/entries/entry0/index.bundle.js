@@ -1132,9 +1132,9 @@ M.map = function(src, atr, out)
 		if (typeof $ !== 'undefined')
 		{
 			var content = $(OUT)
-				.html();
+				.val();
 			$(OUT)
-				.html(content + "hihu   ihiu" + '\n');
+				.val(content + "hihu   ihiu" + '\n');
 		}
 
 		return result;
@@ -1646,6 +1646,9 @@ var init = function()
 {
 	setTimeout(function()
 	{
+		$('#input1')
+			.val('("Hello world"  (map (CONSOLE)) )');
+
 		$('#input1')
 			.focusEnd();
 	}, 2000);
