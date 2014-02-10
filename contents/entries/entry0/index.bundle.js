@@ -1132,9 +1132,9 @@ M.map = function(src, atr, out)
 		if (typeof $ !== 'undefined')
 		{
 			var content = $(OUT)
-				.text();
+				.html();
 			$(OUT)
-				.text(content + output1 + '\n');
+				.html(content + "hihu   ihiu" + '\n');
 		}
 
 		return result;
