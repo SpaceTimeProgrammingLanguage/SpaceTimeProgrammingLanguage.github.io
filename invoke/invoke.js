@@ -45,7 +45,7 @@
                         $('#streamDIV')
                             .html(data2);
                         $("body")
-                            .fadeIn();
+                            .fadeIn('fast');
                     });
 
 

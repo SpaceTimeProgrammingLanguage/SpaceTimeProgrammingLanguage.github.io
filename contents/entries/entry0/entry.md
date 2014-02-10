@@ -18,14 +18,16 @@ The Spacetime Operating Language
 style = "height:80px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 ></textarea>
 <br>
-Evaluation
+Evaluation<br>
 <textarea id = "evaluation1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 <br>
-Console
+Console<br>
 <textarea id = "console1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 
 You can try&nbsp;<font
 style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .
+
+
 
 ##Foundation
 ---

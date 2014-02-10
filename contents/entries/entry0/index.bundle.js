@@ -1639,7 +1639,7 @@ var init = function()
 			.focusEnd();
 
 		evaluation();
-	}, 1000);
+	}, 2000);
 
 	$(document)
 		.on('input propertychange', '#input1', function()
