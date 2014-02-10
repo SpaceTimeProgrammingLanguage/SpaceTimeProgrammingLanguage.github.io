@@ -1126,7 +1126,7 @@ M.map = function(src, atr, out)
 			output1 = output;
 		}
 
-		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
+		M.$W('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
 		M.$W(output1); //side effect
 
 		if (typeof $ !== 'undefined')
@@ -1562,7 +1562,7 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '((1 2( 3 (4) 9)0 )  (map (CONSOLE)) ) ';
+         var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
