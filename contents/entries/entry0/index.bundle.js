@@ -1660,15 +1660,14 @@ var init = function()
 			//	.text();
 
 			var src = '( "hihu   ihiu" (map (    CONSOLE)) ) ';
+
+
 			var src1 = M.parse(M.trim(src));
+
 			console.log('src1 to mamMemory');
 			console.log(src1);
-			M.map(src1, [M.MEMORY]);
 
-
-
-			//	var src1 = M.parse(M.trim(src));
-			//	var result = M.map(src1, [M.MEMORY], '#output1');
+			var result = M.map(src1, [M.MEMORY], '#output1');
 
 			$('#input1')
 				.focusEnd();
