@@ -1129,10 +1129,12 @@ M.map = function(src, atr, out)
 		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
 		M.$W(output1); //side effect
 
+		var content = $(OUT)
+			.html();
 		if (typeof $ !== 'undefined')
 		{
 			$(OUT)
-				.html(output1 + '<br>');
+				.html(content + output1 + '<br>');
 		}
 
 		return result;
