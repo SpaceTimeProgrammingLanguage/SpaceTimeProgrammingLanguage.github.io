@@ -1079,15 +1079,61 @@ M.map = function(src, atr, out)
 
 		var result = $mapMEMORY(src);
 
+		var parse = function(result)
+		{
+			var result1;
+			if ($type(result) === 'Array')
+			{
+				result1 = '( ';
+				for (var i = 0; i < result.length; i++)
+				{
+					result1 += parse(result[i]);
+					result1 += ' ';
+				}
+
+				result1 += ')';
+			}
+			else if ($type(result) === 'String')
+			{
+				result1 = '"' + result + '"';
+			}
+			else if ($type(result) === 'Function')
+			{
+				result1 = 'Function';
+			}
+			else
+			{
+				result1 = result;
+			}
+
+			return result1;
+		};
+
+		M.$L(M.$content(result));
+		var output = parse(M.$content(result));
+
+		var output1;
+
+		if ($type(output) === 'String')
+		{
+			if (output.substring(0, 1) === '"')
+				output1 = output.substring(1, output.length - 1);
+			else
+				output1 = output;
+		}
+		else
+		{
+			output1 = output;
+		}
+
 		M.$L('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
-		M.$W(M.$content(result)); //side effect
+		M.$W(output1); //side effect
 
 		if (typeof $ !== 'undefined')
 		{
 			$(OUT)
-				.text(result);
+				.text(output1);
 		}
-
 
 		return result;
 	};
@@ -1392,8 +1438,8 @@ module.exports = take;
 
          var parse = M.parse = function(src)
          {
-           M.$W('------------- parse ----------------');
-           M.$W(src);
+           M.$L('------------- parse ----------------');
+           M.$L(src);
 
            var maybeNumberString = function(src)
            {
@@ -1513,9 +1559,9 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '((1 2 3) (map(CONSOLE)) ) ';
+         var src = '((2 (4) "hi") (map(CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
-         // var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
+         //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
          // var src = ' (NATURAL  (take(10)) (map(CONSOLE))) ';
 
@@ -1527,8 +1573,8 @@ module.exports = take;
 
          M.debug = false;
          var src1 = parse(trim(src));
-         console.log('src1 to mamMemory');
-         console.log(src1);
+         //console.log('src1 to mamMemory');
+         // console.log(src1);
          M.map(src1, [M.MEMORY]);
 
 
@@ -1643,7 +1689,7 @@ var init = function()
 
 				// Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
 				var len = $(this)
-					.text()
+					.val()
 					.length * 2;
 				this.setSelectionRange(len, len);
 			}
@@ -1652,8 +1698,8 @@ var init = function()
 				// ... otherwise replace the contents with itself
 				// (Doesn't work in Google Chrome)
 				$(this)
-					.text($(this)
-						.text());
+					.val($(this)
+						.val());
 			}
 
 			// Scroll to the bottom, in case we're in a tall textarea
