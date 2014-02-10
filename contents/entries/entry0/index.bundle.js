@@ -1595,8 +1595,19 @@ $(document)
 
 var init = function()
 {
-	$('#input1')
-		.focus();
+	var focusLine = function(el)
+	{
+		el.focus(); //sets focus to element
+		var val = el.text(); //store the value of the element
+		el.text(''); //clear the value of the element
+		el.text(val); //set that value back.
+	};
+
+	setTimeout(function()
+	{
+		focusLine($('#input1'));
+	}, 3000);
+
 	$(document)
 		.on('click', '#btn1', function()
 		{
@@ -1606,8 +1617,7 @@ var init = function()
 			var src1 = M.parse(M.trim(src));
 			var result = M.map(src1, [M.MEMORY], '#output1');
 
-			$('#input1')
-				.focus();
+			focusLine($('#input1'));
 
 		})
 		.on('click', '#btn2', function()
@@ -1615,8 +1625,7 @@ var init = function()
 			$('#output1')
 				.text('');
 
-			$('#input1')
-				.focus();
+			focusLine($('#input1'));
 		});
 
 };
