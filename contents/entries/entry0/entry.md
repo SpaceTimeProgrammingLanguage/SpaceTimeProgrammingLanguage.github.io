@@ -23,7 +23,7 @@ style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding
 
 <button id = "btn1" >Evaluate</button>
 
-<div id = "output1" style = "height:50px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;"></div>
+<div id = "output1" style = "height:50px;width: 500px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></div>
 <button id = "btn2" >Clear</button>
 
 You can try&nbsp;<font

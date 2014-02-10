@@ -1131,10 +1131,8 @@ M.map = function(src, atr, out)
 
 		if (typeof $ !== 'undefined')
 		{
-			var content0 = $(OUT)
-				.html();
 			$(OUT)
-				.html(content0 + '<br>' + output1);
+				.html(output1 + '<br>');
 		}
 
 		return result;
