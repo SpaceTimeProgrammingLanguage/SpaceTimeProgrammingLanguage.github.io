@@ -1447,7 +1447,7 @@ module.exports = take;
        {
          return maybeNumberString(src);
        }
-       else if (src.match(/().*/))
+       else if (src.match(/\(\).*/))
        {
          //   M.$W('src === ()');
          return [];
@@ -1584,9 +1584,9 @@ module.exports = take;
 
          //============================================
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
-         // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
+         var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '(  )   ';
+         //var src = '(  )   ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
