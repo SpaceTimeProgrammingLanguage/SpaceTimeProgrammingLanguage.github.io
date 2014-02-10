@@ -15,12 +15,12 @@ The Spacetime Operating Language
 ---
 
 <textarea id = "input1" 
-style = "height:20px;width: 500px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
+style = "height:80px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 ></textarea>
 
 <button id = "btn1" >Evaluate</button>
 
-<textarea id = "output1" style = "height:50px;width: 500px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
+<textarea id = "output1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
 <button id = "btn2" >Clear</button>
 
 You can try&nbsp;<font

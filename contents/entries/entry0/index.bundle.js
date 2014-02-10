@@ -1562,7 +1562,7 @@ module.exports = take;
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          // var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
 
-         var src = '( "hhi" (map (    CONSOLE)) ) ';
+    var src = '( "hihu   ihi" (map (    CONSOLE)) ) ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
