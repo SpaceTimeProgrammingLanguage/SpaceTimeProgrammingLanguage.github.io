@@ -19,10 +19,10 @@ style = "height:80px;width: 500px;font-size:20px;color:#00ff00;background-color:
 ></textarea>
 <br>
 Evaluation<br>
-<textarea id = "evaluation1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
+<textarea id = "evaluation1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 <br>
 Console<br>
-<textarea id = "console1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
+<textarea id = "console1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 
 You can try&nbsp;<font
 style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .
