@@ -1663,6 +1663,9 @@ var init = function()
 	$(document)
 		.on('click', '#btn1', function()
 		{
+			$('#output1')
+				.text('');
+
 			var src = $('#input1')
 				.text();
 
