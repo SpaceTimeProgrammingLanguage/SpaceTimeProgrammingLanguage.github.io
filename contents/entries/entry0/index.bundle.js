@@ -1676,7 +1676,7 @@ var init = function()
 		.on('click', '#btn2', function()
 		{
 			$('#output1')
-				.val('');
+				.val('value', '');
 
 			$('#input1')
 				.focusEnd();
@@ -1687,29 +1687,14 @@ var init = function()
 
 $.fn.focusEnd = function()
 {
+	var value = $(this)
+		.val();
+	$(this)
+		.val("");
 	$(this)
 		.focus();
-	var tmp = $('<span />')
-		.appendTo($(this)),
-		node = tmp.get(0),
-		range = null,
-		sel = null;
-
-	if (document.selection)
-	{
-		range = document.body.createTextRange();
-		range.moveToElementText(node);
-		range.select();
-	}
-	else if (window.getSelection)
-	{
-		range = document.createRange();
-		range.selectNode(node);
-		sel = window.getSelection();
-		sel.removeAllRanges();
-		sel.addRange(range);
-	}
-	tmp.remove();
+	$(this)
+		.val(value);
 	return this;
 }
 },{"../../app.js":15}]},{},[17])
