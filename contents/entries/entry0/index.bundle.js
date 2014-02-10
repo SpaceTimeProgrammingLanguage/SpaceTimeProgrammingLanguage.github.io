@@ -1073,35 +1073,7 @@ M.map = function(src, atr, out)
 		return true;
 	};
 
-	var $construct = M.$construct = function(result)
-	{
-		var result1;
-		if ($type(result) === 'Array')
-		{
-			result1 = '( ';
-			for (var i = 0; i < result.length; i++)
-			{
-				result1 += $construct(result[i]);
-				result1 += ' ';
-			}
 
-			result1 += ')';
-		}
-		else if ($type(result) === 'String')
-		{
-			result1 = '"' + result + '"';
-		}
-		else if ($type(result) === 'Function')
-		{
-			result1 = 'Function';
-		}
-		else
-		{
-			result1 = result;
-		}
-
-		return result1;
-	};
 
 	var $mapCONSOLE = function(src)
 	{
@@ -1110,7 +1082,7 @@ M.map = function(src, atr, out)
 		var result = $mapMEMORY(src);
 
 		M.$L(M.$content(result));
-		var output = $parse(M.$content(result));
+		var output = M.$construct(M.$content(result));
 
 		var output1;
 
@@ -1441,8 +1413,8 @@ module.exports = take;
 
          var $parse = M.$parse = function(src)
          {
-           M.$L('------------- parse ----------------');
-           M.$L(src);
+           //   M.$W('------------- parse ----------------');
+           //   M.$W(src);
 
            var maybeNumberString = function(src)
            {
@@ -1555,6 +1527,36 @@ module.exports = take;
              }
            }
 
+         };
+
+         var $construct = M.$construct = function(result)
+         {
+           var result1;
+           if (M.$type(result) === 'Array')
+           {
+             result1 = '( ';
+             for (var i = 0; i < result.length; i++)
+             {
+               result1 += $construct(result[i]);
+               result1 += ' ';
+             }
+
+             result1 += ')';
+           }
+           else if (M.$type(result) === 'String')
+           {
+             result1 = '"' + result + '"';
+           }
+           else if (M.$type(result) === 'Function')
+           {
+             result1 = 'Function';
+           }
+           else
+           {
+             result1 = result;
+           }
+
+           return result1;
          };
 
 
