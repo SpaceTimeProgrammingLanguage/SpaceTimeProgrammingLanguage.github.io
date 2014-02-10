@@ -1644,38 +1644,41 @@ $(document)
 
 var init = function()
 {
+	$('#input1')
+		.val('("Hello world"  (map (CONSOLE)) )');
+
 	setTimeout(function()
 	{
 		$('#input1')
-			.val('("Hello world"  (map (CONSOLE)) )');
-
-		$('#input1')
 			.focusEnd();
+
+		evaluation();
 	}, 1000);
 
 	$(document)
 		.on('input propertychange', '#input1', function()
 		{
-			$('#console1')
-				.val('');
-
-			var src = $('#input1')
-				.val();
-
-			var src1 = M.parse(M.trim(src));
-
-			//console.log('src1 to mamMemory');
-			//console.log(src1);
-
-			var result = M.map(src1, [M.MEMORY], '#console1');
-
-			$('#evaluation1')
-				.val(result);
-
-			//$('#input1')
-			//	.focusEnd();
-
+			evaluation();
 		});
+
+	var evaluation = function()
+	{
+		$('#console1')
+			.val('');
+
+		var src = $('#input1')
+			.val();
+
+		var src1 = M.parse(M.trim(src));
+
+		//console.log('src1 to mamMemory');
+		//console.log(src1);
+
+		var result = M.map(src1, [M.MEMORY], '#console1');
+
+		$('#evaluation1')
+			.val(result);
+	};
 
 };
 
