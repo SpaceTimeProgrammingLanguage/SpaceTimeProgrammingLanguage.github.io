@@ -18,10 +18,9 @@ The Spacetime Operating Language
 style = "height:80px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 ></textarea>
 
-<button id = "btn1" >Evaluate</button>
+<textarea id = "evaluation1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 
-<textarea id = "output1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
-<button id = "btn2" >Clear</button>
+<textarea id = "console1" style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
 
 You can try&nbsp;<font
 style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .

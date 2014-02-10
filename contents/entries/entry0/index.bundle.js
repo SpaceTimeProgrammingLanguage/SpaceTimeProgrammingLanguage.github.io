@@ -1651,12 +1651,12 @@ var init = function()
 
 		$('#input1')
 			.focusEnd();
-	}, 2000);
+	}, 1000);
 
 	$(document)
-		.on('click', '#btn1', function()
+		.on('change', '#input1', function()
 		{
-			$('#output1')
+			$('#console1')
 				.val('');
 
 			var src = $('#input1')
@@ -1664,22 +1664,17 @@ var init = function()
 
 			var src1 = M.parse(M.trim(src));
 
-			console.log('src1 to mamMemory');
-			console.log(src1);
+			//console.log('src1 to mamMemory');
+			//console.log(src1);
 
-			var result = M.map(src1, [M.MEMORY], '#output1');
+			var result = M.map(src1, [M.MEMORY], '#console1');
 
-			$('#input1')
-				.focusEnd();
+			$('#evaluation1')
+				.val(result);
 
-		})
-		.on('click', '#btn2', function()
-		{
-			$('#output1')
-				.val('value', '');
+			//$('#input1')
+			//	.focusEnd();
 
-			$('#input1')
-				.focusEnd();
 		});
 
 };
