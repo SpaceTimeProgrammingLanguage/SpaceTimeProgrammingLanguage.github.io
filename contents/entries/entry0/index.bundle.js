@@ -1447,7 +1447,7 @@ module.exports = take;
        {
          return maybeNumberString(src);
        }
-       else if (src.match(/\(\).*/))
+       else if ((src === '()') || (src === '() '))
        {
          //   M.$W('src === ()');
          return [];
