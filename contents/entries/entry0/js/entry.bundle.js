@@ -838,7 +838,7 @@ var $L = M.$L = function(msg)
 	}
 };
 
-var MEMORY = M.MEMORY = 'MEMORY';
+var EVAL = M.EVAL = 'EVAL';
 var EACH = M.EACH = 'EACH';
 var CONSOLE = M.CONSOLE = 'CONSOLE';
 
@@ -874,7 +874,7 @@ var isNatveFunction = M.isNatveFunction = function(el)
 };
 
 
-//is Type Function is fundamental and used in $mapMEMORY, so cannot be exported
+//is Type Function is fundamental and used in $mapEVAL, so cannot be exported
 var isType = M.isType = function(src, atr)
 {
 	var clas;
@@ -955,14 +955,21 @@ M.map = function(src, atr, out)
 	$L('map');
 	$L(src);
 	$L(atr);
-	var $mapMEMORY = function(src)
+	var $mapEVAL = function(src)
 	{
 		$L('############## mapMEM ################');
 		$L('----------- src --------------');
 		$L(src);
 		$L('------------------------------');
-
-		if (isType(src, FUNCTION_SEQUENCE))
+		if (src === '')
+		{
+			return src;
+		}
+		else if (!src)
+		{
+			return src;
+		}
+		else if (isType(src, FUNCTION_SEQUENCE))
 		{
 			$L('@@@@@========  FUNCTION_SEQUENCE ======= @@@@@');
 			$L(src);
@@ -978,7 +985,7 @@ M.map = function(src, atr, out)
 			else if ((src.length === 1) && (src[0] === FUNCTION_COMPOSITION))
 			{
 				$L('!!!!!!!!!!!!!!=====================src === [FUNCTION_COMPOSITION]!!!!!!!!!!!!!!');
-				return $mapMEMORY($pop(FUNCTION_COMPOSITION));
+				return $mapEVAL($pop(FUNCTION_COMPOSITION));
 			}
 			else
 			{
@@ -1034,7 +1041,7 @@ M.map = function(src, atr, out)
 						// f = _f[0][1][0];
 						// result = f(srcsrc, atr); //plus([1],[2])
 
-						result = $mapMEMORY(f);
+						result = $mapEVAL(f);
 
 						$L('---result--------');
 						$L(result);
@@ -1068,7 +1075,7 @@ M.map = function(src, atr, out)
 		//$L(src);
 		for (var i = 0; i < src.length; i++)
 		{
-			$mapMEMORY(src[i]);
+			$mapEVAL(src[i]);
 		}
 		return true;
 	};
@@ -1079,7 +1086,7 @@ M.map = function(src, atr, out)
 	{
 		//$L(' ---$mapCONSOLE  fn ----- ');
 
-		var result = $mapMEMORY(src);
+		var result = $mapEVAL(src);
 
 		M.$L(M.$content(result));
 		var output = M.$construct(M.$content(result));
@@ -1112,9 +1119,9 @@ M.map = function(src, atr, out)
 		return result;
 	};
 
-	if ($content(atr) === MEMORY)
+	if ($content(atr) === EVAL)
 	{
-		return $mapMEMORY(src);
+		return $mapEVAL(src);
 	}
 	if ($content(atr) === EACH)
 	{
@@ -1329,7 +1336,7 @@ module.exports = take;
        return src1[src1.length - 1];
      };
 
-     var $trim = M.$trim = function(src)
+     var trim = function(src)
      {
 
        var strgs = src.match(/"(?:[^\\"]|\\.)*"/ig);
@@ -1407,54 +1414,16 @@ module.exports = take;
 
 
 
-     var $parse = M.$parse = function(src)
+     var arrays = function(src)
      {
-       // M.$W('------------- parse ----------------');
-       // M.$W(src);
+       M.$W('------------- parse ----------------');
+       M.$W(src);
 
-       var maybeNumberString = function(src)
+
+       var f1 = function(src)
        {
-         var s1 = src * 1;
-         var s2 = '' + s1;
-         if (src === s2) // naked number
-         {
-           return s1;
-         }
-         else if (src.indexOf('"') !== -1) // '"some string"'
-         {
-           return restoreMark(src.substring(1, src.length - 1));
-         }
-         else
-         {
-           var src1;
-
-           if (src === '+')
-             src1 = 'plus';
-           else if (src === '-')
-             src1 = 'minus';
-           else
-             src1 = src;
-
-           return M[src1];
-         }
-       };
-
-
-       //// M.$W("!!!!!!!!!!!src");
-       // M.$W(src.length);
-
-       if (src.indexOf('(') === -1)
-       {
-         return maybeNumberString(src);
-       }
-       else if ((src === '()') || (src === '() '))
-       {
-         //   M.$W('src === ()');
-         return [];
-       }
-       else
-       {
-         //  M.$W('some seq');
+         //   M.$W('some seq');
+         //    M.$W(src);
 
          var indexHead;
          var indexTail;
@@ -1494,23 +1463,21 @@ module.exports = take;
 
          }
 
-         //  M.$W(indexHead);
-         //  M.$W(indexTail);
+         //   M.$W(indexHead);
+         //   M.$W(indexTail);
          //  M.$W(space);
 
          var src1 = src.substring(indexHead + 1, indexTail);
-         // M.$W("-----------src1");
-         //  M.$W(src1);
+
 
          var array = [];
 
          if (space.length === 0)
          {
-           array[0] = maybeNumberString(src1);
+           array[0] = arrays(src1);
            // M.$W('---return');
-           // M.$W(array);
+           //  M.$W(array);
            return array;
-
          }
          else
          {
@@ -1518,25 +1485,137 @@ module.exports = take;
            {
              if (j === 0)
              {
-               array[array.length] = $parse(src.substring(indexHead + 1, space[j]));
+               array[array.length] = arrays(src.substring(indexHead + 1, space[j]));
              }
              if (j === space.length - 1)
              {
-               array[array.length] = $parse(src.substring(space[j] + 1, indexTail));
+               array[array.length] = arrays(src.substring(space[j] + 1, indexTail));
              }
              else
              {
-               array[array.length] = $parse(src.substring(space[j] + 1, space[j + 1]));
+               array[array.length] = arrays(src.substring(space[j] + 1, space[j + 1]));
              }
            }
-           M.$W('---return');
-           M.$W(array);
+           //  M.$W('---return');
+           //   M.$W(array);
 
            return array;
          }
+       };
+
+
+       //------------------
+       if (src === '')
+         return src;
+       else if (!src)
+         return src;
+       else if (src.indexOf('(') === -1)
+       {
+         return src;
+       }
+       else
+       {
+
+         var count = 0;
+         var otherCharactor = false;
+         for (var i = 0; i < src.length; i++)
+         {
+           if (src[i] === '(')
+           {
+             count++;
+           }
+           else if (src[i] === ')')
+           {
+             count--;
+           }
+           else if (src[i] === ' ')
+           {
+
+           }
+           else
+           {
+             otherCharactor = true;
+           }
+         }
+
+         if (count !== 0)
+         {
+           return 'error';
+         }
+         else if (otherCharactor)
+         {
+           return f1(src);
+         }
+         else
+         {
+           return [];
+         }
+
+       }
+     };
+
+     var maybeNumberString = function(src)
+     {
+       // console.log('maybeNumberString');
+       // console.log(src);
+
+       var s1 = src * 1;
+       var s2 = '' + s1;
+       if (src === s2) // naked number
+       {
+         return s1;
+       }
+       else if (src.indexOf('"') !== -1) // '"some string"'
+       {
+         return restoreMark(src.substring(1, src.length - 1));
+       }
+       else
+       {
+         var src1;
+
+         if (src === '+')
+           src1 = 'plus';
+         else if (src === '-')
+           src1 = 'minus';
+         else
+           src1 = src;
+
+         return M[src1];
        }
 
      };
+
+
+
+     var walk = function(src)
+     {
+       //  console.log('=======');
+       // console.log(src);
+
+       if (M.$type(src) !== 'Array')
+       {
+         return maybeNumberString(src);
+       }
+       else
+       {
+         var array = [];
+         for (var i = 0; i < src.length; i++)
+         {
+           //  console.log('-------');
+           //  console.log(src[i]);
+           array[i] = walk(src[i]);
+         }
+
+         return array;
+       }
+     };
+
+
+     var $parse = M.$parse = function(src)
+     {
+       return walk(arrays(trim(src)));
+     };
+      //======================================
 
      var $construct = M.$construct = function(result)
      {
@@ -1568,12 +1647,6 @@ module.exports = take;
        return result1;
      };
 
-
-
-      //======================================
-
-
-
      if (typeof describe === 'undefined')
      {
        loadModules(function()
@@ -1584,9 +1657,10 @@ module.exports = take;
 
          //============================================
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
-         var src = ' ( 1(+(2(+(3)))) (map(CONSOLE)) ) ';
-
-         //var src = '(  )   ';
+         //var src = '    ( ((  ) )  8 ) ';
+         var src = '';
+         //var src = '(("hello   world"))';
+         //  var src = '  ( 2 (+(9))( 1 3 4) )    ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
@@ -1599,11 +1673,15 @@ module.exports = take;
          )*/
 
          M.debug = false;
-         var src1 = $parse($trim(src));
-         console.log('src1 to mamMemory');
-         console.log(src1);
-         M.map(src1, [M.MEMORY]);
+         var src1 = $parse(src);
 
+         //walkarray  //
+         //   console.log('src1 to mapEVAL');
+         console.log(src1);
+         var result = M.map(src1, [M.EVAL]);
+         M.$W(' === result === ');
+         M.$W(result);
+         M.$W($construct(result));
 
          //------------------------------------------------------------------
        });
@@ -1647,6 +1725,7 @@ var M = require('/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js');
 $(document)
 	.ready(function()
 	{
+
 		init();
 	});
 
@@ -1677,12 +1756,12 @@ var init = function()
 		var src = $('#input1')
 			.val();
 
-		var src1 = M.$parse(M.$trim(src));
+		var src1 = M.$parse(src);
 
 		//console.log('src1 to mamMemory');
 		//console.log(src1);
 
-		var result = M.map(src1, [M.MEMORY], '#console1');
+		var result = M.map(src1, [M.EVAL], '#console1');
 
 		$('#evaluation1')
 			.val(M.$construct(result));

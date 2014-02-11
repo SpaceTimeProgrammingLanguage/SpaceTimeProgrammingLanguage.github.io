@@ -10,6 +10,7 @@ var M = require('/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js');
 $(document)
 	.ready(function()
 	{
+
 		init();
 	});
 
@@ -40,12 +41,12 @@ var init = function()
 		var src = $('#input1')
 			.val();
 
-		var src1 = M.$parse(M.$trim(src));
+		var src1 = M.$parse(src);
 
 		//console.log('src1 to mamMemory');
 		//console.log(src1);
 
-		var result = M.map(src1, [M.MEMORY], '#console1');
+		var result = M.map(src1, [M.EVAL], '#console1');
 
 		$('#evaluation1')
 			.val(M.$construct(result));
