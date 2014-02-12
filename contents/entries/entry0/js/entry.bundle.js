@@ -712,21 +712,49 @@ var NATURAL = function()
 
 
 module.exports = NATURAL;
-},{"./map":11}],7:[function(require,module,exports){
+},{"./map":10}],7:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
 'use strict';
-var SEQ = {};
+var M = require('./map');
 
-SEQ.i = 0;
-SEQ.n = function(i)
+var seq = {};
+
+M.I = 0;
+
+
+M.N = function(i)
 {
-	return SEQ[SEQ.i + i];
+	return seq[M.I + i];
 };
 
+var SEQ = function(src, likeFibf)
+{
+	//var Seq = M.$content(SEQ);
+
+	M.$L('=======ITERATE================');
+	M.$L(M.SEQ);
+
+	var F = function()
+	{
+		if (M.I <= 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return M.N(-2) + M.N(-1);
+		}
+	};
+
+
+	return [F];
+};
+
+
 module.exports = SEQ;
-},{}],8:[function(require,module,exports){
+},{"./map":10}],8:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -757,51 +785,19 @@ var ifF = function(src, atr)
   M.$L(atr[0]); // [true]
 
 
-  if (M.$content(M.map(atr[0], [M.MEMORY])))
+  if (M.$content(M.map(atr[0], [M.EVAL])))
   {
-    return M.map(atr[1], [M.MEMORY]);
+    return M.map(atr[1], [M.EVAL]);
   }
   else
   {
-    return M.map(src, [M.MEMORY]);
+    return M.map(src, [M.EVAL]);
   }
 
 };
 
 module.exports = ifF;
-},{"./map":11}],10:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var iterate = function(src, likeFibf)
-{
-	//var Seq = M.$content(SEQ);
-
-	M.$L('=======ITERATE================');
-	M.$L(M.SEQ);
-
-	var F = function()
-	{
-		if (M.SEQ.i <= 1)
-		{
-			return 1;
-		}
-		else
-		{
-			return M.SEQ.n(-2) + M.SEQ.n(-1);
-		}
-	};
-
-
-	return [F];
-};
-
-module.exports = iterate;
-},{"./map":11}],11:[function(require,module,exports){
+},{"./map":10}],10:[function(require,module,exports){
 /* jslint node: true */
 /* global $,describe, it, before, beforeEach, after, afterEach */
 
@@ -1133,7 +1129,7 @@ M.map = function(src, atr, out)
 	}
 
 };
-},{"util":4}],12:[function(require,module,exports){
+},{"util":4}],11:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1149,7 +1145,7 @@ var minus = function(src, atr)
 };
 
 module.exports = minus;
-},{"./map":11}],13:[function(require,module,exports){
+},{"./map":10}],12:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1165,8 +1161,8 @@ var plus = function(src, atr) //plus([1], [2]) = [3]
 	M.$L('---atr');
 	M.$L(atr);
 
-	var src1 = M.map(src, [M.MEMORY]);
-	var atr1 = M.map(atr, [M.MEMORY]);
+	var src1 = M.map(src, [M.EVAL]);
+	var atr1 = M.map(atr, [M.EVAL]);
 
 	M.$L('@@@src1');
 	M.$L(src1);
@@ -1198,7 +1194,7 @@ var plus = function(src, atr) //plus([1], [2]) = [3]
 			}
 			else
 			{
-				var src2 = M.map(M.$content(src1), [M.MEMORY]);
+				var src2 = M.map(M.$content(src1), [M.EVAL]);
 				result = [];
 				for (var i = 0; i < src2.length; i++)
 				{
@@ -1223,7 +1219,7 @@ var plus = function(src, atr) //plus([1], [2]) = [3]
 };
 
 module.exports = plus;
-},{"./map":11}],14:[function(require,module,exports){
+},{"./map":10}],13:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1233,8 +1229,8 @@ var M = require('./map');
 
 var take = function(src, atr)
 {
-	var src1 = M.$content(M.map(src, [M.MEMORY]));
-	var atr1 = M.$content(M.map(atr, [M.MEMORY]));
+	var src1 = M.$content(M.map(src, [M.EVAL]));
+	var atr1 = M.$content(M.map(atr, [M.EVAL]));
 
 	if (M.isType(src1, M.DATA_SEQUENCE))
 	{
@@ -1251,23 +1247,23 @@ var take = function(src, atr)
 		M.$L('-----take src is Object');
 		M.$L('' + src1);
 
-		M.SEQ.i = 0;
+		M.I = 0;
 		var out = [];
 
 		while (true)
 		{
-			out[M.SEQ.i] = M.SEQ[M.SEQ.i] = src1();
+			out[M.I] = M.SEQ[M.I] = src1();
 
 			if (out.length === atr1)
 				return [out];
 
-			M.SEQ.i++;
+			M.I++;
 		}
 	}
 };
 
 module.exports = take;
-},{"./map":11}],15:[function(require,module,exports){
+},{"./map":10}],14:[function(require,module,exports){
      var SpaceTime_FunctionsDIR = './SpaceTime_Functions/';
      var SpaceTime_coreFile = 'map.js';
      console.log('{src f}   src -f-> ??');
@@ -1658,9 +1654,9 @@ module.exports = take;
          //============================================
          // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
          //var src = '    ( ((  ) )  8 ) ';
-         var src = '';
-         //var src = '(("hello   world"))';
-         //  var src = '  ( 2 (+(9))( 1 3 4) )    ';
+         // var src = '';
+         var src = '(("hello   world"))';
+         var src = '  ( 2 (+(9)) )    ';
          //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
          //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
 
@@ -1688,7 +1684,7 @@ module.exports = take;
      }
 
       //=========================================
-},{"./SpaceTime_Functions/map.js":11,"./loadModulesFactoryBrowserify":16}],16:[function(require,module,exports){
+},{"./SpaceTime_Functions/map.js":10,"./loadModulesFactoryBrowserify":15}],15:[function(require,module,exports){
 var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 {
   return {
@@ -1698,7 +1694,6 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
       M.doNothing = require('./SpaceTime_Functions/doNothing.js');
       M.FIB = require('./SpaceTime_Functions/FIB.js');
       M.ifF = require('./SpaceTime_Functions/ifF.js');
-      M.iterate = require('./SpaceTime_Functions/iterate.js');
       M.minus = require('./SpaceTime_Functions/minus.js');
       M.NATURAL = require('./SpaceTime_Functions/NATURAL.js');
       M.plus = require('./SpaceTime_Functions/plus.js');
@@ -1712,7 +1707,7 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 };
 
 module.exports = loadModulesFactory;
-},{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/SEQ.js":7,"./SpaceTime_Functions/doNothing.js":8,"./SpaceTime_Functions/ifF.js":9,"./SpaceTime_Functions/iterate.js":10,"./SpaceTime_Functions/minus.js":12,"./SpaceTime_Functions/plus.js":13,"./SpaceTime_Functions/take.js":14}],17:[function(require,module,exports){
+},{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/SEQ.js":7,"./SpaceTime_Functions/doNothing.js":8,"./SpaceTime_Functions/ifF.js":9,"./SpaceTime_Functions/minus.js":11,"./SpaceTime_Functions/plus.js":12,"./SpaceTime_Functions/take.js":13}],16:[function(require,module,exports){
 /* jslint node: true */
 /* global jQuery,$, window, document, alert, describe, it, before, beforeEach, after, afterEach */
 
@@ -1782,4 +1777,4 @@ $.fn.focusEnd = function()
 		.val(value);
 	return this;
 };
-},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":15}]},{},[17])
+},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":14}]},{},[16])
