@@ -712,7 +712,7 @@ var NATURAL = function()
 
 
 module.exports = NATURAL;
-},{"./map":11}],7:[function(require,module,exports){
+},{"./map":16}],7:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -757,7 +757,92 @@ var bool = function(src, atr)
 };
 
 module.exports = bool;
-},{"./map":11}],8:[function(require,module,exports){
+},{"./map":16}],8:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL === valR)];
+};
+
+module.exports = boolEqual;
+},{"./map":16}],9:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolGreater = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL > valR)];
+};
+
+module.exports = boolGreater;
+},{"./map":16}],10:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolGreaterEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL >= valR)];
+};
+
+module.exports = boolGreaterEqual;
+},{"./map":16}],11:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolLess = function(src, atr)
+{
+  var valL = M.$content(M.$mapEVAL(src));
+  var valR = M.$content(M.$mapEVAL(atr));
+
+  return [(valL < valR)];
+};
+
+module.exports = boolLess;
+},{"./map":16}],12:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolLessEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL <= valR)];
+};
+
+module.exports = boolLessEqual;
+},{"./map":16}],13:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -769,7 +854,7 @@ var doNothing = function(src, atr)
 };
 
 module.exports = doNothing;
-},{}],9:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -799,7 +884,7 @@ var ifF = function(src, atr)
 };
 
 module.exports = ifF;
-},{"./map":11}],10:[function(require,module,exports){
+},{"./map":16}],15:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 'use strict';
@@ -847,7 +932,7 @@ var iterate = function(src, atr)
 
 
 module.exports = iterate;
-},{"./map":11}],11:[function(require,module,exports){
+},{"./map":16}],16:[function(require,module,exports){
 /* jslint node: true */
 /* global $,describe, it, before, beforeEach, after, afterEach */
 
@@ -1220,7 +1305,7 @@ M.map = function(src, atr, out)
 	}
 
 };
-},{"util":4}],12:[function(require,module,exports){
+},{"util":4}],17:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1228,15 +1313,12 @@ M.map = function(src, atr, out)
 
 var M = require('./map');
 
-var minus = function(src, atr)
-{
-	var result = src - atr;
+var minus = function(src, atr) {
 
-	return result;
 };
 
 module.exports = minus;
-},{"./map":11}],13:[function(require,module,exports){
+},{"./map":16}],18:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1310,7 +1392,7 @@ var plus = function(src, atr) //plus([1], [2]) = [3]
 };
 
 module.exports = plus;
-},{"./map":11}],14:[function(require,module,exports){
+},{"./map":16}],19:[function(require,module,exports){
 /* jslint node: true */
 /* global describe, it, before, beforeEach, after, afterEach */
 
@@ -1370,7 +1452,7 @@ var take = function(src, atr)
 };
 
 module.exports = take;
-},{"./map":11}],15:[function(require,module,exports){
+},{"./map":16}],20:[function(require,module,exports){
      var SpaceTime_FunctionsDIR = './SpaceTime_Functions/';
      var SpaceTime_coreFile = 'map.js';
      console.log('{src f}   src -f-> ??');
@@ -1683,15 +1765,15 @@ module.exports = take;
          else if (src === 'if')
            src1 = 'ifF';
          else if (src === '==')
-           src1 = 'EQUAL';
+           src1 = 'boolEqual';
          else if (src === '>')
-           src1 = 'GREATER';
+           src1 = 'boolGreater';
          else if (src === '<')
-           src1 = 'LESS';
+           src1 = 'boolLess';
          else if (src === '>=')
-           src1 = 'GREATEREQUAL';
+           src1 = 'boolGreaterEqual';
          else if (src === '<=')
-           src1 = 'LESSEQUAL';
+           src1 = 'boolLessEqual';
          else
            src1 = src;
 
@@ -1791,8 +1873,9 @@ module.exports = take;
          // var src = '( () (iterate ( I ) ) (take(10)) )';
          //  var src = '(5 (ifF  ((10 (bool (>= (11) )))  9)   )  )';
 
-         var src = '( () (iterate (I (if ((I (bool (<= (4) )))  (1))   )  ) ) (take(10)) )';
+         // var src = '( () (iterate (I (if ((I (bool (<= (4) )))  (1))   )  ) ) (take(10)) )';
 
+         var src = '(3 (== (3)))';
          //var src = '(10 (bool (>= (10) )))';
 
          M.debug = false;
@@ -1815,7 +1898,7 @@ module.exports = take;
      }
 
       //=========================================
-},{"./SpaceTime_Functions/map.js":11,"./loadModulesFactoryBrowserify":16}],16:[function(require,module,exports){
+},{"./SpaceTime_Functions/map.js":16,"./loadModulesFactoryBrowserify":21}],21:[function(require,module,exports){
 var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 {
   return {
@@ -1823,6 +1906,11 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
     func: function(f)
     {
       M.bool = require('./SpaceTime_Functions/bool.js');
+      M.boolEqual = require('./SpaceTime_Functions/boolEqual.js');
+      M.boolGreater = require('./SpaceTime_Functions/boolGreater.js');
+      M.boolGreaterEqual = require('./SpaceTime_Functions/boolGreaterEqual.js');
+      M.boolLess = require('./SpaceTime_Functions/boolLess.js');
+      M.boolLessEqual = require('./SpaceTime_Functions/boolLessEqual.js');
       M.doNothing = require('./SpaceTime_Functions/doNothing.js');
       M.FIB = require('./SpaceTime_Functions/FIB.js');
       M.ifF = require('./SpaceTime_Functions/ifF.js');
@@ -1839,7 +1927,7 @@ var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
 };
 
 module.exports = loadModulesFactory;
-},{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/bool.js":7,"./SpaceTime_Functions/doNothing.js":8,"./SpaceTime_Functions/ifF.js":9,"./SpaceTime_Functions/iterate.js":10,"./SpaceTime_Functions/minus.js":12,"./SpaceTime_Functions/plus.js":13,"./SpaceTime_Functions/take.js":14}],17:[function(require,module,exports){
+},{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/bool.js":7,"./SpaceTime_Functions/boolEqual.js":8,"./SpaceTime_Functions/boolGreater.js":9,"./SpaceTime_Functions/boolGreaterEqual.js":10,"./SpaceTime_Functions/boolLess.js":11,"./SpaceTime_Functions/boolLessEqual.js":12,"./SpaceTime_Functions/doNothing.js":13,"./SpaceTime_Functions/ifF.js":14,"./SpaceTime_Functions/iterate.js":15,"./SpaceTime_Functions/minus.js":17,"./SpaceTime_Functions/plus.js":18,"./SpaceTime_Functions/take.js":19}],22:[function(require,module,exports){
 /* jslint node: true */
 /* global jQuery,$, window, document, alert, describe, it, before, beforeEach, after, afterEach */
 
@@ -1909,4 +1997,4 @@ $.fn.focusEnd = function()
 		.val(value);
 	return this;
 };
-},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":15}]},{},[17])
+},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":20}]},{},[22])
