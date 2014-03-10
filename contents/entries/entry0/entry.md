@@ -46,25 +46,25 @@ This is the fundamental unit of *SpaceTime*.
 ---
 ###Pair points a pair of objects
 
-![](http://localhost:18080/contents/img/pairab.png)
+![](http://localhost:18080/contents/img/002.svg)
 
 Now, a `Pair` points objects: `a` and `b`.
 
 ---
 ###Pair notation
-![](http://localhost:18080/contents/img/pairabnotation.png)
+![](http://localhost:18080/contents/img/003.svg)
 
 When a `Pair` points objects: `a` and `b`, it's expressed as **{a b}** in `Pair notation`.
 
 ---
 ###Pair can point itself
 
-![](http://localhost:18080/contents/img/emptypairentity.png)
+![](http://localhost:18080/contents/img/004.svg)
 
 ---
 ###Empty Pair
 
-![](http://localhost:18080/contents/img/emptypairnotation.png)
+![](http://localhost:18080/contents/img/005.svg)
 
 
 
@@ -75,7 +75,7 @@ Accordingly, the `Pair notaion` is { { {...} {...} } { {...} {...} } }, so we si
 ---
 ###Push Pair
 
-![](http://localhost:18080/contents/img/push5.png)
+![](http://localhost:18080/contents/img/006.svg)
 
 A `Pair` can point another `Pair` so that we can joint `Pair`s.
 
@@ -90,7 +90,7 @@ The `Pair notation` is **{ {} 5 }**.
 ---
 ###Push another Pair
 
-![](http://localhost:18080/contents/img/push2.png)
+![](http://localhost:18080/contents/img/007.svg)
 
 In the same manner, we can `push` another `Pair`.
 
@@ -101,12 +101,12 @@ The `Pair notation` is **{ { {} 5 } 2 }**.
 ---
 ###Push to any sequence
 
-![](http://localhost:18080/contents/img/push7.png)
+![](http://localhost:18080/contents/img/008.svg)
 
 ---
 ###Sequence
 
-![](http://localhost:18080/contents/img/sequence527.png)
+![](http://localhost:18080/contents/img/009.svg)
 
 Here, *SpaceTime* explicitly defines a term `Sequence` for this form.
 Please note this is the same term and meaning of [Sequence](http://en.wikipedia.org/wiki/Sequence) in Mathematics.
@@ -116,7 +116,7 @@ At the same time, instead of `Pair notation` : { { { {} 5 } 2 } 7 }, it can be s
 ---
 ###Push function
 
-![](http://localhost:18080/contents/img/function5.png)
+![](http://localhost:18080/contents/img/010.svg)
 
 A `Pair` can point `function`.
 
@@ -127,36 +127,25 @@ In this case, we `push` a `function` to **(5)**.
 ---
 ###A case of Push function
 
-![](http://localhost:18080/contents/img/plus52.png)
+![](http://localhost:18080/contents/img/011.svg)
 
 When we push a `function` : `plus2` to **(5)**, the result is **(7)**.
 
 ---
 ###Function is Sequence
-
-![](http://localhost:18080/contents/img/functionissequence.png)
-
 The `function` : `plus2` is fundamentally some `Sequence`.
 
 `plus2` consists of a `Sequence` : **( plus (2) )**.
 
 **(2)** is an `attribute Sequence` of the `function`.
 
----
-###Evaluation of a Sequence containing a function
-
-![](http://localhost:18080/contents/img/fullsequence527.png)
-
 **( 5 (plus (2)) )** is equivalent to **(7)**.
 
 ---
-### Everything is function and Sequence
+### Everything is a function and Sequence
 
-![](http://localhost:18080/contents/img/think53.png)
+![](http://localhost:18080/contents/img/012.svg)
 
-![](http://localhost:18080/contents/img/actually53is.png)
-![](http://localhost:18080/contents/img/so3isfunction.png)
-![](http://localhost:18080/contents/img/so3isfunction2.png)
 
 Everything is `function` in *SpaceTime*.
 
@@ -173,12 +162,12 @@ However, `3` is `3`. There is no other way to express than just `3` in *SpaceTim
 ---
 ###Every Sequence is a result of function to `Empty Pair`
 
-![](http://localhost:18080/contents/img/so5isalsofunction.png)
+![](http://localhost:18080/contents/img/013.svg)
 
 ---
 ###Function composition
 
-![](http://localhost:18080/contents/img/functioncomposition.png)
+![](http://localhost:18080/contents/img/014.svg)
 
 [Function composition](http://en.wikipedia.org/wiki/Function_composition) is naturally expressed in a form :
 **( *source function fucnction )** in *SpaceTime*.
@@ -188,21 +177,21 @@ Please note the `source` = **( 1 )** as a `Sequence`, not 1.
 ---
 ###1 +2 +3 = 6
 
-![](http://localhost:18080/contents/img/plus123.png)
+![](http://localhost:18080/contents/img/015.svg)
 
 *SpaceTime* has a short-cut notation : **+** corresponding to `plus` function.
 
 ---
 ###1 +(2 +3) = 6
 
-![](http://localhost:18080/contents/img/plust1and23.png)
+![](http://localhost:18080/contents/img/016.svg)
 
 ( 1 (+ ( 2 (+ ( 3 ) ) ) ) )  =  ( 6 )
 
 ---
 ###Indefinite sequence
 
-![](http://localhost:18080/contents/img/naturaltake10.png)
+![](http://localhost:18080/contents/img/017.svg)
 
 *SpaceTime* employes an [evaluation strategy](http://en.wikipedia.org/wiki/Evaluation_strategy) : [lazy evaluation, or call-by-need](http://en.wikipedia.org/wiki/Lazy_evaluation).
 
@@ -211,26 +200,70 @@ Accordingly, *SpaceTime* can deal with Indefinite sequence such as [Natural numb
 ---
 ###I/O (Input and Output)
 
-![](http://localhost:18080/contents/img/console5.png)
+![](http://localhost:18080/contents/img/018.svg)
 
 [I/O](http://en.wikipedia.org/wiki/Input/output) does not affect the evaluation context of *SpaceTime* directly, so that it can preserve [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) paradigm.
 
 *SpaceTime* employes [FRP](http://en.wikipedia.org/wiki/Functional_reactive_programming) or `SpaceTime Programming paradigm`.
 
 ---
+
+
+##Basic
+---
 ###Hello world
-
-![](http://localhost:18080/contents/img/helloworld.png)
-
+`Code`
+```
+(
+  "hello World"
+  (map (CONSOLE))
+)
+```
+`Evalation`
+```
+("hello World")
+```
+`Console`
+```
+hello World
+```
 ---
 ###Hello world twice
 
-![](http://localhost:18080/contents/img/helloworld2.png)
+`Code`
+```
+(
+  "hello World"
+  (map (CONSOLE))
+  (map (CONSOLE))
+)
+```
+`Evalation`
+```
+("hello World")
+```
+`Console`
+```
+hello World
+hello World
+```
 
 ---
-###Map any Sequence to the console
+###Boolean
 
-![](http://localhost:18080/contents/img/fibconsole.png)
+
+`Code`
+```
+(
+  "hello World"
+  (map (CONSOLE))
+  (map (CONSOLE))
+)
+```
+`Evalation`
+```
+("hello World")
+```
 
 ---
 
