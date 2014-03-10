@@ -220,7 +220,7 @@ Accordingly, *SpaceTime* can deal with Indefinite sequence such as [Natural numb
   (map (CONSOLE))
 )
 ```
-`Evalation`
+`Evaluation`
 ```
 ("hello World")
 ```
@@ -239,7 +239,7 @@ hello World
   (map (CONSOLE))
 )
 ```
-`Evalation`
+`Evaluation`
 ```
 ("hello World")
 ```
@@ -252,21 +252,91 @@ hello World
 ---
 ###Boolean
 
+`Code`
+```
+(3 (== (3)) )
+```
+`Evaluation`
+```
+(true)
+```
+
+
+`Code`
+```
+(3 (== (5)) )
+```
+`Evaluation`
+```
+(false)
+```
+
+
+`Code`
+```
+(2 (> (1)) )
+```
+`Evaluation`
+```
+(true)
+```
+
+`Code`
+```
+(2 (< (1)) )
+```
+`Evaluation`
+```
+(false)
+```
 
 `Code`
 ```
 (
-  "hello World"
-  (map (CONSOLE))
-  (map (CONSOLE))
+   "foo"
+   (
+      if (  ( 3 (==(3) )  )
+           "bar"
+         )
+   )
 )
 ```
-`Evalation`
+`Evaluation`
 ```
-("hello World")
+("bar")
 ```
 
+`Code`
+```
+(
+   "foo"
+   (
+      if (  ( 3 (==(5) )  )
+           "bar"
+         )
+   )
+)
+```
+`Evaluation`
+```
+("foo")
+```
+
+
+
+
+
+
+
+
 ---
+
+
+
+
+
+
+
 
 
 
