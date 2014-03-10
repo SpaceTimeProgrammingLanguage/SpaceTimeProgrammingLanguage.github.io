@@ -14,14 +14,15 @@ The Spacetime Operating Language
 ##Hello world
 ---
 
+`Code`
 <textarea id = "input1"
 style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 ></textarea>
-<br>
-Evaluation<br>
+
+`Evaluation`
 <textarea id = "evaluation1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
-<br>
-Console<br>
+
+`Console`
 <textarea id = "console1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
 
 You can try&nbsp;<font
