@@ -5,7 +5,7 @@
 The Spacetime Operating Language
 
 
-***SpaceTime*** 
+***SpaceTime***
 #### - is a Functional Reactive Programming (FRP) language
 #### - employs Lazy evaluation strategy
 #### - runs on JavaScript Engines (browsers & node.js)
@@ -14,15 +14,15 @@ The Spacetime Operating Language
 ##Hello world
 ---
 
-<textarea id = "input1" 
+<textarea id = "input1"
 style = "height:80px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px;overflow:scroll"
 ></textarea>
 <br>
 Evaluation<br>
-<textarea id = "evaluation1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
+<textarea id = "evaluation1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
 <br>
 Console<br>
-<textarea id = "console1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea> 
+<textarea id = "console1" disabled style = "height:200px;width: 500px;font-size:20px;color:#00ff00;background-color:#000000;padding:10px; overflow:scroll"></textarea>
 
 You can try&nbsp;<font
 style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of&nbsp;<font style = "color:#00ff00;background-color:#000000;">"Hello world"</font>&nbsp; .
@@ -37,8 +37,9 @@ style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of
 [Singly linked list](http://en.wikipedia.org/wiki/Singly_linked_list#Singly_linked_list) and [S-expression](http://en.wikipedia.org/wiki/S-expression).
 
 ###Pair
+![stable](http://badges.github.io/stability-badges/dist/stable.svg)
 
-![](http://localhost:18080/contents/img/pairentity.png)
+![](http://localhost:18080/contents/img/001.svg)
 This is the fundamental unit of *SpaceTime*.
 `Pair` has a pair of hands to point a pair of any objects.
 
@@ -51,7 +52,6 @@ Now, a `Pair` points objects: `a` and `b`.
 
 ---
 ###Pair notation
-
 ![](http://localhost:18080/contents/img/pairabnotation.png)
 
 When a `Pair` points objects: `a` and `b`, it's expressed as **{a b}** in `Pair notation`.
@@ -65,10 +65,10 @@ When a `Pair` points objects: `a` and `b`, it's expressed as **{a b}** in `Pair 
 ###Empty Pair
 
 ![](http://localhost:18080/contents/img/emptypairnotation.png)
- 
 
 
-When a Pair points itself, since it's a form of [Self-reference](http://en.wikipedia.org/wiki/Self-reference), an  [Infinite recursion](http://en.wikipedia.org/wiki/Infinite_loop#Infinite_recursion) occurs. 
+
+When a Pair points itself, since it's a form of [Self-reference](http://en.wikipedia.org/wiki/Self-reference), an  [Infinite recursion](http://en.wikipedia.org/wiki/Infinite_loop#Infinite_recursion) occurs.
 
 Accordingly, the `Pair notaion` is { { {...} {...} } { {...} {...} } }, so we simply express the entity as **{ }**, and let's call it `Empty Pair`.
 
@@ -97,7 +97,7 @@ In the same manner, we can `push` another `Pair`.
 We `push` `2` to the previous sequence.
 
 The `Pair notation` is **{ { {} 5 } 2 }**.
- 
+
 ---
 ###Push to any sequence
 
@@ -107,7 +107,7 @@ The `Pair notation` is **{ { {} 5 } 2 }**.
 ###Sequence
 
 ![](http://localhost:18080/contents/img/sequence527.png)
- 
+
 Here, *SpaceTime* explicitly defines a term `Sequence` for this form.
 Please note this is the same term and meaning of [Sequence](http://en.wikipedia.org/wiki/Sequence) in Mathematics.
 
@@ -128,7 +128,7 @@ In this case, we `push` a `function` to **(5)**.
 ###A case of Push function
 
 ![](http://localhost:18080/contents/img/plus52.png)
- 
+
 When we push a `function` : `plus2` to **(5)**, the result is **(7)**.
 
 ---
@@ -136,7 +136,7 @@ When we push a `function` : `plus2` to **(5)**, the result is **(7)**.
 
 ![](http://localhost:18080/contents/img/functionissequence.png)
 
-The `function` : `plus2` is fundamentally some `Sequence`. 
+The `function` : `plus2` is fundamentally some `Sequence`.
 
 `plus2` consists of a `Sequence` : **( plus (2) )**.
 
@@ -148,7 +148,7 @@ The `function` : `plus2` is fundamentally some `Sequence`.
 ![](http://localhost:18080/contents/img/fullsequence527.png)
 
 **( 5 (plus (2)) )** is equivalent to **(7)**.
- 
+
 ---
 ### Everything is function and Sequence
 
@@ -164,12 +164,12 @@ In this case, `3` is a `function` that maps a source : **( 5 )** to a target : *
 
 Consequently, since `function` is `Sequence` in *SpaceTime*, everything is `Sequence` in *SpaceTime*.
 
-Therefore, `3` is a `function` and at the same time, is a `Sequence`. 
+Therefore, `3` is a `function` and at the same time, is a `Sequence`.
 
 However, `3` is `3`. There is no other way to express than just `3` in *SpaceTime*.
- 
- 
- 
+
+
+
 ---
 ###Every Sequence is a result of function to `Empty Pair`
 
@@ -181,7 +181,7 @@ However, `3` is `3`. There is no other way to express than just `3` in *SpaceTim
 ![](http://localhost:18080/contents/img/functioncomposition.png)
 
 [Function composition](http://en.wikipedia.org/wiki/Function_composition) is naturally expressed in a form :
-**( *source function fucnction )** in *SpaceTime*. 
+**( *source function fucnction )** in *SpaceTime*.
 
 Please note the `source` = **( 1 )** as a `Sequence`, not 1.
 
@@ -212,7 +212,7 @@ Accordingly, *SpaceTime* can deal with Indefinite sequence such as [Natural numb
 ###I/O (Input and Output)
 
 ![](http://localhost:18080/contents/img/console5.png)
- 
+
 [I/O](http://en.wikipedia.org/wiki/Input/output) does not affect the evaluation context of *SpaceTime* directly, so that it can preserve [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) paradigm.
 
 *SpaceTime* employes [FRP](http://en.wikipedia.org/wiki/Functional_reactive_programming) or `SpaceTime Programming paradigm`.
@@ -226,7 +226,7 @@ Accordingly, *SpaceTime* can deal with Indefinite sequence such as [Natural numb
 ###Hello world twice
 
 ![](http://localhost:18080/contents/img/helloworld2.png)
- 
+
 ---
 ###Map any Sequence to the console
 
