@@ -281,6 +281,7 @@ hello World
 (true)
 ```
 
+
 `Code`
 ```
 (2 (< (1)) )
@@ -290,39 +291,92 @@ hello World
 (false)
 ```
 
+
+---
+###Conditional
+
 `Code`
 ```
 (
-   "foo"
+   "default"
    (
-      if (  ( 3 (==(3) )  )
-           "bar"
+      if (
+           (3 (==(3)))
+           ("match")
          )
    )
 )
 ```
 `Evaluation`
 ```
-("bar")
+("match")
 ```
+
 
 `Code`
 ```
 (
-   "foo"
+   "default"
    (
-      if (  ( 3 (==(5) )  )
-           "bar"
+      if (
+           (3 (==(5)))
+           ("match")
          )
    )
 )
 ```
 `Evaluation`
 ```
-("foo")
+("default")
 ```
 
 
+`Code`
+```
+(
+   "default"
+   (
+      if (
+           (5 (==(5)))
+           ("case1")
+         )
+   )
+   (
+      if (
+           (9 (==(9)))
+           ("case2")
+         )
+   )
+)
+```
+`Evaluation`
+```
+("case2")
+```
+
+
+`Code`
+```
+(
+   "default"
+   (
+      if (
+           (5 (==(5)))
+           ("case1")
+         )
+   )
+   (
+      if (
+           (9 (==(0)))
+           ("case2")
+         )
+   )
+)
+```
+`Evaluation`
+```
+("case1")
+```
 
 
 
