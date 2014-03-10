@@ -37,9 +37,9 @@ style = "color:#00ff00;background-color:#000000;">1(+(2))</font>&nbsp;instead of
 [Singly linked list](http://en.wikipedia.org/wiki/Singly_linked_list#Singly_linked_list) and [S-expression](http://en.wikipedia.org/wiki/S-expression).
 
 ###Pair
-![stable](http://badges.github.io/stability-badges/dist/stable.svg)
 
-![](http://localhost:18080/contents/img/001.svg)
+![001](http://localhost:18080/contents/img/001.svg)
+
 This is the fundamental unit of *SpaceTime*.
 `Pair` has a pair of hands to point a pair of any objects.
 
