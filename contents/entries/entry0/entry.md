@@ -299,12 +299,12 @@ hello World
 `Code`
 ```
 (
-   "default"
+　　3 (==(3))　
    (
-      if (
-           (3 (==(3)))
+     if (
            ("match")
-         )
+           ("mismatch")
+        )
    )
 )
 ```
@@ -317,38 +317,49 @@ hello World
 `Code`
 ```
 (
-   "default"
+　　3 (==(5))　
    (
-      if (
-           (3 (==(5)))
+     if (
            ("match")
-         )
+           ("mismatch")
+        )
    )
 )
 ```
 `Evaluation`
 ```
-("default")
+("mismatch")
 ```
 
 
 `Code`
 ```
 (
-   "default"
+　　3 (==(5))　
    (
-      if (
-           (5 (==(5)))
+     if (
            ("case1")
-         )
-   )
-   (
-      if (
-           (9 (==(9)))
-           ("case2")
-         )
+           (
+           　　3 (==(3))　
+              (
+                if (
+                      ("case2")
+                      (
+                      　　3 (==(3))　
+                         (
+                           if (
+                                 ("case3")
+                                 ("mismatch")
+                              )
+                         )
+                      )
+                   )
+              )
+           )
+        )
    )
 )
+
 ```
 `Evaluation`
 ```
@@ -359,24 +370,35 @@ hello World
 `Code`
 ```
 (
-   "default"
+　　3 (==(5))　
    (
-      if (
-           (5 (==(5)))
+     if (
            ("case1")
-         )
-   )
-   (
-      if (
-           (9 (==(0)))
-           ("case2")
-         )
+           (
+           　　3 (==(1))　
+              (
+                if (
+                      ("case2")
+                      (
+                      　　3 (==(3))　
+                         (
+                           if (
+                                 ("case3")
+                                 ("mismatch")
+                              )
+                         )
+                      )
+                   )
+              )
+           )
+        )
    )
 )
+
 ```
 `Evaluation`
 ```
-("case1")
+("case3")
 ```
 
 
