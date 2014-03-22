@@ -5,7 +5,7 @@
 
 var debug = false;
 
-var M = require('/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js');
+var M = require('/Volumes/GD15/gd/SpaceTime/app.js');
 
 $(document)
 	.ready(function()

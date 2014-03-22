@@ -1,4 +1,1334 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var Seq = [];
+
+var FIB = {
+	f: function(i)
+	{
+		if (i <= 1)
+		{
+			Seq[i] = 1;
+		}
+		else
+		{
+			Seq[i] = Seq[i - 2] + Seq[i - 1];
+		}
+
+		return Seq[i];
+	}
+};
+
+module.exports = FIB;
+},{}],2:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+var M = require('./map');
+
+var NATURAL = function()
+{
+	//return M.SEQ.i;
+}();
+
+
+module.exports = NATURAL;
+},{"./map":12}],3:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var bool = function(src, atr)
+{
+  //                  (1 (bool (EQUAL (9) )))
+  //                  (1 (bool (== (9) )))
+  //var bool = atr[0];
+  M.$L('!!!!!!!!!! bool   !!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  M.$L(src);
+  M.$L(M.$type(src) === 'Array');
+
+  M.$L('!!atr!!');
+  M.$L(atr[0]); // [true]
+
+  var valL = M.$content(M.$mapEVAL(src));
+  var valR = M.$content(M.$mapEVAL(atr[1]));
+
+  var result = function(symbol)
+  {
+    console.log('=======');
+    console.log(symbol);
+    if (symbol === M.EQUAL)
+      return (valL === valR);
+    else if (symbol === M.GREATER)
+      return (valL > valR);
+    else if (symbol === M.LESS)
+      return (valL < valR);
+    else if (symbol === M.GREATEREQUAL)
+      return (valL >= valR);
+    else if (symbol === M.LESSEQUAL)
+      return (valL <= valR);
+  };
+
+  return [result(atr[0])];
+
+
+};
+
+module.exports = bool;
+},{"./map":12}],4:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL === valR)];
+};
+
+module.exports = boolEqual;
+},{"./map":12}],5:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolGreater = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL > valR)];
+};
+
+module.exports = boolGreater;
+},{"./map":12}],6:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolGreaterEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL >= valR)];
+};
+
+module.exports = boolGreaterEqual;
+},{"./map":12}],7:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolLess = function(src, atr)
+{
+  var valL = M.$content(M.$mapEVAL(src));
+  var valR = M.$content(M.$mapEVAL(atr));
+
+  return [(valL < valR)];
+};
+
+module.exports = boolLess;
+},{"./map":12}],8:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var boolLessEqual = function(src, atr)
+{
+	var valL = M.$content(M.$mapEVAL(src));
+	var valR = M.$content(M.$mapEVAL(atr));
+
+	return [(valL <= valR)];
+};
+
+module.exports = boolLessEqual;
+},{"./map":12}],9:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var doNothing = function(src, atr)
+{
+	return [];
+};
+
+module.exports = doNothing;
+},{}],10:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var ifF = function(src, atr)
+{
+  //var bool = atr[0];
+  //console.log('!!!!!!!!!! ifF   !!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  M.$L('!!!!!!!!!! ifF   !!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  M.$L(src);
+  M.$L(M.$type(src) === 'Array');
+
+
+  ///-------
+  if(M.$content(M.$mapEVAL(src)))
+  {
+  //  console.log('!!!!!!!!!! ifF  Matched');
+    return M.$mapEVAL(atr[0]);
+  }
+  else
+  {
+  //  console.log('!!!!!!!!!! ifF  unMatched');
+    return M.$mapEVAL(atr[1]);
+  }
+
+
+
+};
+
+module.exports = ifF;
+
+},{"./map":12}],11:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+'use strict';
+var M = require('./map');
+
+M.sequence = [];
+
+M.I = {};
+
+
+M.SEQ = function(src, i)
+{
+	return M.sequence[src + i];
+};
+
+var iterate = function(src, atr)
+{
+	//var Seq = M.$content(SEQ);
+
+	M.$L('=======ITERATE================');
+	M.$L(M.SEQ);
+
+	//atr = [M.I];
+	/*
+		if (M.I <= 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return M.SEQ(M.I, -2) + M.SEQ(M.I, -1);
+		}
+	}*/
+
+
+	/*	atr = [
+				M.I,
+				[M.ifF, [[M.I, [M.bool, [M.LESSEQUAL, [5]]]], [1]]]
+			];*/
+	return [
+	{
+		iterate: atr
+	}];
+};
+
+
+module.exports = iterate;
+},{"./map":12}],12:[function(require,module,exports){
+/* jslint node: true */
+/* global $,describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = {};
+module.exports = M;
+
+var OUT;
+
+M.debug = false; //just default, change this value @ test or app.js
+var $W = M.$W = function(msg)
+{
+	console.log(msg);
+};
+
+var $L = M.$L = function(msg)
+{
+	if (M.debug)
+	{
+		if (typeof window === 'undefined')
+		{
+			var util = require('util');
+			console.log(util.inspect(msg,
+			{
+				depth: 99,
+				colors: true
+			}));
+		}
+		else
+		{
+			console.log(msg);
+		}
+	}
+};
+
+
+var $WL = M.$WL = function(msg)
+{
+	if (typeof window === 'undefined')
+	{
+		var util = require('util');
+		console.log(util.inspect(msg,
+		{
+			depth: 99,
+			colors: true
+		}));
+	}
+	else
+	{
+		console.log(msg);
+	}
+};
+
+var EVAL = M.EVAL = 'EVAL';
+var EACH = M.EACH = 'EACH';
+var CONSOLE = M.CONSOLE = 'CONSOLE';
+
+var FUNCTION_SEQUENCE = M.FUNCTION_SEQUENCE = 'FUNCTION_SEQUENCE';
+var DATA_SEQUENCE = M.DATA_SEQUENCE = 'DATA_SEQUENCE';
+
+var FUNCTION_COMPOSITION = M.FUNCTION_COMPOSITION = [];
+
+var Val = [];
+var VAL = M.VAL = function(index)
+{
+	return Val[index] || (Val[index] = {
+		wrapped_value: []
+	});
+};
+
+var EQUAL = M.EQUAL = 'EQUAL';
+var GREATER = M.GREATER = 'GREATER';
+var LESS = M.LESS = 'LESS';
+var GREATEREQUAL = M.GREATEREQUAL = 'GREATEREQUAL';
+var LESSEQUAL = M.LESSEQUAL = 'LESSEQUAL';
+
+
+
+//see http://bonsaiden.github.io/JavaScript-Garden/#types.typeof
+var $type = M.$type = function(obj)
+{
+	return Object
+		.prototype
+		.toString
+		.call(obj)
+		.slice(8, -1);
+};
+
+
+var isNatveFunction = M.isNatveFunction = function(el)
+{
+	return ($type(el) === 'Function');
+};
+
+
+//is Type Function is fundamental and used in $mapEVAL, so cannot be exported
+var isType = M.isType = function(src, atr)
+{
+	var clas;
+
+	var isFunction = function(el)
+	{
+		if (el.length === 0)
+		{
+			return false;
+		}
+		else if (isNatveFunction(el[0]))
+		{
+			return true;
+		}
+		else
+		{
+			if (el[0].length > 1)
+			{
+				if (el[0][0] === FUNCTION_COMPOSITION)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+	};
+
+	if ($type(src) === 'Array')
+	{
+		if (isFunction(src))
+			clas = FUNCTION_SEQUENCE;
+		else
+			clas = DATA_SEQUENCE;
+	}
+	else
+	{
+		clas = $type(src);
+	}
+
+	return ((src !== undefined) && (src !== null) && (clas === atr));
+
+};
+
+
+var $push = M.$push = function(arr, data)
+{
+	arr[arr.length] = data;
+};
+
+var $pop = M.$pop = function(arr)
+{
+	var data = arr[arr.length - 1];
+	arr.splice(arr.length - 1, 1);
+	return data;
+};
+
+
+var $content = M.$content = function(seq)
+{
+	return seq[0];
+};
+
+M.map = function(src, atr, out)
+{
+
+	if (typeof out !== 'undefined')
+	{
+		OUT = out;
+	}
+
+	$L('map');
+	$L(src);
+	$L(atr);
+	var $mapEVAL = M.$mapEVAL = function(src)
+	{
+		$W('############## mapMEM ################');
+		$L('----------- src --------------');
+		$W(src);
+		$L('------------------------------');
+
+		if (isType(src, 'Boolean'))
+		{
+			$W('boolean');
+		}
+
+		if (src === '')
+		{
+			return src;
+		}
+		else if (!src)
+		{
+			return src;
+		}
+		else if (isType(src, FUNCTION_SEQUENCE))
+		{
+			$L('@@@@@========  FUNCTION_SEQUENCE ======= @@@@@');
+			$L(src);
+			return src;
+		}
+		else if (isType(src, DATA_SEQUENCE))
+		{
+			$L('@@@@@======== DATA_SEQUENCE =========@@@@@');
+			if (src.length === 0) //empty pair
+			{
+				return [];
+			}
+			else if ((src.length === 1) && (src[0] === FUNCTION_COMPOSITION))
+			{
+				$L('!!!!!!!!!!!!!!=====================src === [FUNCTION_COMPOSITION]!!!!!!!!!!!!!!');
+				return $mapEVAL($pop(FUNCTION_COMPOSITION));
+			}
+			else
+			{
+				$L('----------------------------------');
+				var lastElement = src[src.length - 1];
+				$L('!!!!!!!!!!!!!!lastElement');
+				$L(lastElement);
+
+				if (!isType(lastElement, FUNCTION_SEQUENCE))
+				{
+					$W('@@@@@ unOperatable DATA_SEQUENCE @@@@@');
+					$W(src);
+					if ($content(src)
+						.hasOwnProperty('valOfI'))
+					{
+						return [$content(src)
+							.valOfI];
+					}
+					else
+						return src;
+				}
+				else
+				{
+					$L('@@@@@ Operatable DATA_SEQUENCE (the lastElement== f)@@@@@');
+					// src = [SRC, [plus, ATR]]
+					var f = lastElement[0];
+					var atr = lastElement[1];
+
+					var srcsrc = src.slice(0, src.length - 1);
+
+					var result;
+					if (isNatveFunction(f)) // _f = plus
+					{
+						if (!isType(srcsrc, DATA_SEQUENCE))
+							throw 'Invalid Format';
+						//$L('---srcsrc--------');
+						//$L(srcsrc);  [SRC]
+
+						result = f(srcsrc, atr); //plus([1],[2])
+
+						$L('---result--------');
+						$L(result);
+						return result;
+					}
+					else // _f = [FUNCTION_COMPOSITION,[plus, [1]],[plus, [2]]]
+					{
+						$L('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Custom Function &&&&&');
+						$L(f);
+
+						// [FUNCTION_COMPOSITION] = srcsrc;
+
+						$push(FUNCTION_COMPOSITION, srcsrc);
+
+						for (var i = 0; i < atr.length; i++)
+						{
+							$push(VAL(i)
+								.wrapped_value, atr[i]);
+						}
+
+						// f = _f[0][1][0];
+						// result = f(srcsrc, atr); //plus([1],[2])
+
+						result = $mapEVAL(f);
+
+						$L('---result--------');
+						$L(result);
+						return result;
+					}
+
+				}
+
+			}
+		}
+		else
+		{
+			$L('@@@@@========= ATOM/OBJECT ========@@@@@');
+			$L('---result--------');
+			$L(src);
+
+			if (src.hasOwnProperty('wrapped_value'))
+			{
+				return $pop(src.wrapped_value);
+			}
+			else if (src.hasOwnProperty('valOfI'))
+			{
+				return src.valOfI;
+			}
+			else
+			{
+				return src;
+			}
+		}
+
+	};
+	var $mapEACH = function(src)
+	{
+		//$L('---$mapEACH ');
+		//$L(src);
+		for (var i = 0; i < src.length; i++)
+		{
+			$mapEVAL(src[i]);
+		}
+		return true;
+	};
+
+
+
+	var $mapCONSOLE = function(src)
+	{
+		//$L(' ---$mapCONSOLE  fn ----- ');
+
+		var result = $mapEVAL(src);
+
+		M.$L(M.$content(result));
+		var output = M.$construct(M.$content(result));
+
+		var output1;
+
+		if ($type(output) === 'String')
+		{
+			if (output.substring(0, 1) === '"')
+				output1 = output.substring(1, output.length - 1);
+			else
+				output1 = output;
+		}
+		else
+		{
+			output1 = output;
+		}
+
+		M.$W('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
+		M.$W(output1); //side effect
+
+		if (typeof $ !== 'undefined')
+		{
+			var content = $(OUT)
+				.val();
+			$(OUT)
+				.val(content + output1 + '\n');
+		}
+
+		return result;
+	};
+
+	if ($content(atr) === EVAL)
+	{
+		return $mapEVAL(src);
+	}
+	if ($content(atr) === EACH)
+	{
+		return $mapEACH(src);
+	}
+	if ($content(atr) === CONSOLE)
+	{
+		return $mapCONSOLE(src);
+	}
+
+};
+},{"util":22}],13:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var minus = function(src, atr) {
+
+};
+
+module.exports = minus;
+},{"./map":12}],14:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var plus = function(src, atr) //plus([1], [2]) = [3]
+{
+	M.$L('==========plus');
+	M.$L('---src');
+	M.$L(src);
+	M.$L('---atr');
+	M.$L(atr);
+
+	var src1 = M.map(src, [M.EVAL]);
+	var atr1 = M.map(atr, [M.EVAL]);
+
+	M.$L('@@@src1');
+	M.$L(src1);
+	M.$L('@@@atr1');
+	M.$L(atr1);
+
+	if (!M.isType(atr1, M.DATA_SEQUENCE))
+	{
+
+		throw 'Invalid Format';
+	}
+	else if (atr1.length === 0)
+	{
+		throw 'atr is null Sequence (empty pair), invalid format  ';
+	}
+	else
+	{
+
+
+		if (atr1.length === 1)
+		{
+			var result;
+
+			if (!M.isType(M.$content(src1), M.DATA_SEQUENCE))
+			{
+				result = M.$content(src1) + M.$content(atr1);
+				// $L(result);  
+				return [result];
+			}
+			else
+			{
+				var src2 = M.map(M.$content(src1), [M.EVAL]);
+				result = [];
+				for (var i = 0; i < src2.length; i++)
+				{
+					result[i] = src2[i] + M.$content(atr1);
+				}
+
+				// $L('+++++++++++++++++++++++++++++');
+				//$L(result)  
+				return [result];
+			}
+
+
+
+		}
+		else
+		{
+			//??
+		}
+	}
+
+
+};
+
+module.exports = plus;
+},{"./map":12}],15:[function(require,module,exports){
+/* jslint node: true */
+/* global describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var M = require('./map');
+
+var take = function(src, atr)
+{
+	console.log('----take src---------');
+	M.$WL(src);
+
+	console.log('-------------');
+
+	var src1 = M.$content(M.map(src, [M.EVAL]));
+	var atr1 = M.$content(M.map(atr, [M.EVAL]));
+
+	console.log('----take src1---------');
+	M.$WL(src1);
+
+	if (!src1.hasOwnProperty('iterate'))
+	{
+		M.$WL('-----take src is Array');
+		M.$L('-----src1');
+		M.$L(src1);
+		M.$L('-----atr1');
+		M.$L(atr1);
+		return [src1.slice(0, atr1)];
+	}
+	else
+	{
+		var src2 = src1.iterate;
+		M.$WL('-----take src is Object');
+		M.$L('' + src2);
+
+		M.I.valOfI = 0;
+		var out = [];
+
+
+		while (true)
+		{
+			console.log('-------------');
+			console.log(M.I.valOfI);
+			console.log(M.$mapEVAL(src2));
+			console.log('-------------');
+
+			out[M.I.valOfI] =
+				M.sequence[M.I.valOfI] = M.$content(M.$mapEVAL(src2));
+			//src1(i);
+
+			if (out.length === atr1)
+				return [out];
+
+			M.I.valOfI++;
+		}
+	}
+};
+
+module.exports = take;
+},{"./map":12}],16:[function(require,module,exports){
+     var SpaceTime_FunctionsDIR = './SpaceTime_Functions/';
+     var SpaceTime_coreFile = 'map.js';
+     console.log('{src f}   src -f-> ??');
+     console.log('');
+     console.log('SpaceTime modlue loading...');
+      //var M = require(SpaceTime_FunctionsDIR + SpaceTime_coreFile);
+      //require(STRING) must be raw STRING to be read by Browserify
+     var M = require('./SpaceTime_Functions/map.js');
+     module.exports = M;
+     console.log('Function: map(core)');
+
+     var loadModulesFactory;
+     if (typeof window === 'undefined')
+     {
+       var modulePathHiddenFromBrowserify = './loadModulesFactory';
+       loadModulesFactory = require(modulePathHiddenFromBrowserify);
+     }
+     else
+     {
+       loadModulesFactory = require('./loadModulesFactoryBrowserify');
+     }
+
+     var obj = loadModulesFactory(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M);
+     M = obj.M;
+     var loadModules = M.loadModules = obj.func;
+
+
+      //=====================================
+     String.prototype.replaceAll = function(org, dest)
+     {
+       return this
+         .split(org)
+         .join(dest);
+     };
+
+     var sqSymbol = '_____sq_____';
+     var sqKey = 'sq___';
+
+      //==========================
+     var cmtprts = ['//', '/*', '*/', '(', ')', '\n', ' ', '　'];
+     var cmtprtsE = cmtprts.map(function(s, i)
+     {
+       return '______mark______' + i;
+     });
+      //==========================
+
+     var restoreMark = function(src)
+     {
+       // "thisisareplacement"+i  restore to normal string
+       var src1 = [];
+
+       cmtprtsE.map(function(mark, mark_i)
+       {
+         var data;
+         if (mark_i === 0)
+         {
+           data = src;
+         }
+         else
+         {
+           data = src1[mark_i - 1];
+         }
+         src1[mark_i] = data.replaceAll(mark, cmtprts[mark_i]);
+
+       });
+       return src1[src1.length - 1];
+     };
+
+     var trim = function(src)
+     {
+
+       var strgs = src.match(/"(?:[^\\"]|\\.)*"/ig);
+       var strgs1 = [];
+       var src1 = [];
+
+       var src2;
+       // escape cmtprts  during each Strings
+       if (strgs)
+       {
+         strgs.map(function(str, str_i)
+         {
+           var str1 = [];
+           cmtprts.map(function(mark, mark_i)
+           {
+             var data;
+             if (mark_i === 0)
+             {
+               data = str;
+             }
+             else
+             {
+               data = str1[mark_i - 1];
+             }
+
+             str1[mark_i] = data.replaceAll(mark, cmtprtsE[mark_i]);
+           });
+
+           strgs1[str_i] = str1[str1.length - 1];
+
+           var data1;
+
+           if (str_i === 0)
+           {
+             data1 = src;
+           }
+           else
+           {
+             data1 = src1[str_i - 1];
+           }
+
+           src1[str_i] = data1.replaceAll(strgs[str_i], strgs1[str_i]);
+
+         });
+
+         src2 = src1[src1.length - 1];
+       }
+       else
+       {
+         src2 = src;
+       }
+
+       // comment out removing
+       var re2 = new RegExp('//.*?(?=[\\n\\r]+|$)|/[*](.|\n)*?[*]/', 'g');
+       var src3 = src2
+         .replace(re2, '');
+
+       //beautifly
+       var src4 = src3.replaceAll('　', ' '); //zenkaku>hankaku
+
+       var src5 = src4.replaceAll('\n', ' '); //linebreak -> single space
+
+       var src6 = src5.replace(/(\S)\(/g, '$1 ('); //foo(  -> foo (
+       var src7 = src6.replace(/\)(\S)/g, ') $1'); //)foo  -> ) foo
+
+       var src8 = src7.replace(/[　\s]+/g, ' '); // trim extra spaces
+       var src9 = src8.replace(/(\()\s+|\s+(\))/g, '$1$2'); //trim a space after '(' and before ')'.
+       var src10 = src9.replace(/(\[)\s+|\s+(\])/g, '$1$2'); //trim a space after '[' and before ']'.
+
+
+
+       return src10;
+
+     };
+
+
+
+     var arrays = function(src)
+     {
+       M.$W('------------- parse ----------------');
+       M.$W(src);
+
+
+       var f1 = function(src)
+       {
+         //   M.$W('some seq');
+         //    M.$W(src);
+
+         var indexHead;
+         var indexTail;
+         var count = [];
+         var previousCount;
+
+         var space = [];
+         for (var i = 0; i < src.length; i++)
+         {
+           // wt('> ' + src[i]);
+           if (i === 0)
+             previousCount = 0;
+           else
+             previousCount = count[i - 1];
+
+           if ((previousCount === 1) && (src[i] === ' '))
+             space[space.length] = i;
+
+           if (src[i] === '(')
+             count[i] = previousCount + 1;
+           else if (src[i] === ')')
+             count[i] = previousCount - 1;
+           else
+             count[i] = previousCount;
+
+           if ((previousCount === 0) && (count[i] === 1))
+           {
+             indexHead = i;
+           }
+
+           if ((previousCount === 1) && (count[i] === 0))
+           {
+             indexTail = i;
+           }
+
+           //   wt('count ' + count[i]);
+
+         }
+
+         //   M.$W(indexHead);
+         //   M.$W(indexTail);
+         //  M.$W(space);
+
+         var src1 = src.substring(indexHead + 1, indexTail);
+
+
+         var array = [];
+
+         if (space.length === 0)
+         {
+           array[0] = arrays(src1);
+           // M.$W('---return');
+           //  M.$W(array);
+           return array;
+         }
+         else
+         {
+           for (var j = 0; j < space.length; j++)
+           {
+             if (j === 0)
+             {
+               array[array.length] = arrays(src.substring(indexHead + 1, space[j]));
+             }
+             if (j === space.length - 1)
+             {
+               array[array.length] = arrays(src.substring(space[j] + 1, indexTail));
+             }
+             else
+             {
+               array[array.length] = arrays(src.substring(space[j] + 1, space[j + 1]));
+             }
+           }
+           //  M.$W('---return');
+           //   M.$W(array);
+
+           return array;
+         }
+       };
+
+
+       //------------------
+       if (src === '')
+         return src;
+       else if (!src)
+         return src;
+       else if (src.indexOf('(') === -1)
+       {
+         return src;
+       }
+       else
+       {
+
+         var count = 0;
+         var otherCharactor = false;
+         for (var i = 0; i < src.length; i++)
+         {
+           if (src[i] === '(')
+           {
+             count++;
+           }
+           else if (src[i] === ')')
+           {
+             count--;
+           }
+           else if (src[i] === ' ')
+           {
+
+           }
+           else
+           {
+             otherCharactor = true;
+           }
+         }
+
+         if (count !== 0)
+         {
+           return 'error';
+         }
+         else if (otherCharactor)
+         {
+           return f1(src);
+         }
+         else
+         {
+           return [];
+         }
+
+       }
+     };
+
+     var maybeNumberString = function(src)
+     {
+       console.log('maybeNumberString');
+       console.log(src);
+
+       var s1 = src * 1;
+       var s2 = '' + s1;
+       if (src === s2) // naked number
+       {
+         return s1;
+       }
+       else if (src.indexOf('"') !== -1) // '"some string"'
+       {
+         return restoreMark(src.substring(1, src.length - 1));
+       }
+       else
+       {
+         var src1;
+
+         if (src === '+')
+           src1 = 'plus';
+         else if (src === '-')
+           src1 = 'minus';
+         else if (src === 'if')
+           src1 = 'ifF';
+         else if (src === '==')
+           src1 = 'boolEqual';
+         else if (src === '>')
+           src1 = 'boolGreater';
+         else if (src === '<')
+           src1 = 'boolLess';
+         else if (src === '>=')
+           src1 = 'boolGreaterEqual';
+         else if (src === '<=')
+           src1 = 'boolLessEqual';
+         else
+           src1 = src;
+
+         console.log(src1);
+         return M[src1];
+       }
+
+     };
+
+
+
+     var walk = function(src)
+     {
+       //  console.log('=======');
+       // console.log(src);
+
+       if (M.$type(src) !== 'Array')
+       {
+         return maybeNumberString(src);
+       }
+       else
+       {
+         var array = [];
+         for (var i = 0; i < src.length; i++)
+         {
+           //  console.log('-------');
+           //  console.log(src[i]);
+           array[i] = walk(src[i]);
+         }
+
+         return array;
+       }
+     };
+
+
+     var $parse = M.$parse = function(src)
+     {
+       return walk(arrays(trim(src)));
+     };
+      //======================================
+
+     var $construct = M.$construct = function(result)
+     {
+       var result1;
+       if (M.$type(result) === 'Array')
+       {
+         result1 = '( ';
+         for (var i = 0; i < result.length; i++)
+         {
+           result1 += $construct(result[i]);
+           result1 += ' ';
+         }
+
+         result1 += ')';
+       }
+       else if (M.$type(result) === 'String')
+       {
+         result1 = '"' + result + '"';
+       }
+       else if (M.$type(result) === 'Function')
+       {
+         result1 = 'Function';
+       }
+       else
+       {
+         result1 = result;
+       }
+
+       return result1;
+     };
+
+     if (typeof describe === 'undefined')
+     {
+       loadModules(function()
+       {
+         M.$W('------------- SpaceTime Module is Ready ----------------');
+
+
+
+         //============================================
+         // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
+         //var src = '    ( ((  ) )  8 ) ';
+         // var src = '';
+         // var src = '(("hello   world"))';
+         // var src = '  ( 2 (+(9)) )    ';
+         //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
+         //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
+
+         // var src = ' (NATURAL  (take(10)) (map(CONSOLE))) ';
+
+         /*  (
+             FUNCTION_COMPOSITION VAL0(get(i(-(2))))(+(VAL0(get(i(-(1))))))
+             (ifF((i <= 1)(1))))
+
+         )*/
+         //  var src = '( (1 2 3 4 5)      (take(4))   (take(2)))';
+         // var src = '( () (iterate ( I ) ) (take(10)) )';
+         var src = '( 3 (==(1))　  (  if (  ("match")  ("unmatch")   )  ) )';
+
+         //  var src = '( () (iterate (I (if ((I (<= (4) ))  (1))   )  ) ) (take(10)) )';
+
+         //var src = '(3 (== (3)))';
+         // var src = '("foo" if(true) ("bar") ))';
+
+         M.debug = false;
+         var src1 = $parse(src);
+
+         /*  src1 = [
+          5,
+          [M.ifF, [[false], [1]]]
+        ];*/
+
+         //  src1 = [10, [M.bool, [M.GREATEREQUAL, [10]]]];
+         console.log(src1);
+         var result = M.map(src1, [M.EVAL]);
+         M.$W(' === result === ');
+         M.$W(result);
+         M.$W($construct(result));
+
+         //------------------------------------------------------------------
+       });
+     }
+
+      //=========================================
+
+},{"./SpaceTime_Functions/map.js":12,"./loadModulesFactoryBrowserify":17}],17:[function(require,module,exports){
+var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
+{
+  return {
+    M: M,
+    func: function(f)
+    {
+      M.bool = require('./SpaceTime_Functions/bool.js');
+      M.boolEqual = require('./SpaceTime_Functions/boolEqual.js');
+      M.boolGreater = require('./SpaceTime_Functions/boolGreater.js');
+      M.boolGreaterEqual = require('./SpaceTime_Functions/boolGreaterEqual.js');
+      M.boolLess = require('./SpaceTime_Functions/boolLess.js');
+      M.boolLessEqual = require('./SpaceTime_Functions/boolLessEqual.js');
+      M.doNothing = require('./SpaceTime_Functions/doNothing.js');
+      M.FIB = require('./SpaceTime_Functions/FIB.js');
+      M.ifF = require('./SpaceTime_Functions/ifF.js');
+      M.iterate = require('./SpaceTime_Functions/iterate.js');
+      M.minus = require('./SpaceTime_Functions/minus.js');
+      M.NATURAL = require('./SpaceTime_Functions/NATURAL.js');
+      M.plus = require('./SpaceTime_Functions/plus.js');
+      M.take = require('./SpaceTime_Functions/take.js');
+
+      console.log('SpaceTime modlue load complete.');
+      f();
+    }
+  };
+};
+
+module.exports = loadModulesFactory;
+},{"./SpaceTime_Functions/FIB.js":1,"./SpaceTime_Functions/NATURAL.js":2,"./SpaceTime_Functions/bool.js":3,"./SpaceTime_Functions/boolEqual.js":4,"./SpaceTime_Functions/boolGreater.js":5,"./SpaceTime_Functions/boolGreaterEqual.js":6,"./SpaceTime_Functions/boolLess.js":7,"./SpaceTime_Functions/boolLessEqual.js":8,"./SpaceTime_Functions/doNothing.js":9,"./SpaceTime_Functions/ifF.js":10,"./SpaceTime_Functions/iterate.js":11,"./SpaceTime_Functions/minus.js":13,"./SpaceTime_Functions/plus.js":14,"./SpaceTime_Functions/take.js":15}],18:[function(require,module,exports){
+/* jslint node: true */
+/* global jQuery,$, window, document, alert, describe, it, before, beforeEach, after, afterEach */
+
+'use strict';
+
+var debug = false;
+
+var M = require('/Volumes/GD15/gd/SpaceTime/app.js');
+
+$(document)
+	.ready(function()
+	{
+
+		init();
+	});
+
+var init = function()
+{
+
+	setTimeout(function()
+	{
+		$('#input1')
+			.val('("Hello world"  (map (CONSOLE)) )');
+		$('#input1')
+			.focusEnd();
+
+		evaluation();
+	}, 2000);
+
+	$(document)
+		.on('input propertychange', '#input1', function()
+		{
+			evaluation();
+		});
+
+	var evaluation = function()
+	{
+		$('#console1')
+			.val('');
+
+		var src = $('#input1')
+			.val();
+
+		var src1 = M.$parse(src);
+
+		//console.log('src1 to mamMemory');
+		//console.log(src1);
+
+		var result = M.map(src1, [M.EVAL], '#console1');
+
+		$('#evaluation1')
+			.val(M.$construct(result));
+	};
+
+};
+
+
+$.fn.focusEnd = function()
+{
+	var value = $(this)
+		.val();
+	$(this)
+		.val('');
+	$(this)
+		.focus();
+	$(this)
+		.val(value);
+	return this;
+};
+},{"/Volumes/GD15/gd/SpaceTime/app.js":16}],19:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -23,7 +1353,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],2:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -78,15 +1408,16 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],3:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],4:[function(require,module,exports){
-(function (process,global){// Copyright Joyent, Inc. and other Node contributors.
+},{}],22:[function(require,module,exports){
+(function (process,global){
+// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -672,1329 +2003,6 @@ exports._extend = function(origin, add) {
 function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
-}).call(this,require("/Users/ken/.nvm/v0.10.25/lib/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":3,"/Users/ken/.nvm/v0.10.25/lib/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2,"inherits":1}],5:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
 
-'use strict';
-
-var Seq = [];
-
-var FIB = {
-	f: function(i)
-	{
-		if (i <= 1)
-		{
-			Seq[i] = 1;
-		}
-		else
-		{
-			Seq[i] = Seq[i - 2] + Seq[i - 1];
-		}
-
-		return Seq[i];
-	}
-};
-
-module.exports = FIB;
-},{}],6:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-var M = require('./map');
-
-var NATURAL = function()
-{
-	//return M.SEQ.i;
-}();
-
-
-module.exports = NATURAL;
-},{"./map":16}],7:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var bool = function(src, atr)
-{
-  //                  (1 (bool (EQUAL (9) )))
-  //                  (1 (bool (== (9) )))
-  //var bool = atr[0];
-  M.$L('!!!!!!!!!! bool   !!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  M.$L(src);
-  M.$L(M.$type(src) === 'Array');
-
-  M.$L('!!atr!!');
-  M.$L(atr[0]); // [true]
-
-  var valL = M.$content(M.$mapEVAL(src));
-  var valR = M.$content(M.$mapEVAL(atr[1]));
-
-  var result = function(symbol)
-  {
-    console.log('=======');
-    console.log(symbol);
-    if (symbol === M.EQUAL)
-      return (valL === valR);
-    else if (symbol === M.GREATER)
-      return (valL > valR);
-    else if (symbol === M.LESS)
-      return (valL < valR);
-    else if (symbol === M.GREATEREQUAL)
-      return (valL >= valR);
-    else if (symbol === M.LESSEQUAL)
-      return (valL <= valR);
-  };
-
-  return [result(atr[0])];
-
-
-};
-
-module.exports = bool;
-},{"./map":16}],8:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var boolEqual = function(src, atr)
-{
-	var valL = M.$content(M.$mapEVAL(src));
-	var valR = M.$content(M.$mapEVAL(atr));
-
-	return [(valL === valR)];
-};
-
-module.exports = boolEqual;
-},{"./map":16}],9:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var boolGreater = function(src, atr)
-{
-	var valL = M.$content(M.$mapEVAL(src));
-	var valR = M.$content(M.$mapEVAL(atr));
-
-	return [(valL > valR)];
-};
-
-module.exports = boolGreater;
-},{"./map":16}],10:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var boolGreaterEqual = function(src, atr)
-{
-	var valL = M.$content(M.$mapEVAL(src));
-	var valR = M.$content(M.$mapEVAL(atr));
-
-	return [(valL >= valR)];
-};
-
-module.exports = boolGreaterEqual;
-},{"./map":16}],11:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var boolLess = function(src, atr)
-{
-  var valL = M.$content(M.$mapEVAL(src));
-  var valR = M.$content(M.$mapEVAL(atr));
-
-  return [(valL < valR)];
-};
-
-module.exports = boolLess;
-},{"./map":16}],12:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var boolLessEqual = function(src, atr)
-{
-	var valL = M.$content(M.$mapEVAL(src));
-	var valR = M.$content(M.$mapEVAL(atr));
-
-	return [(valL <= valR)];
-};
-
-module.exports = boolLessEqual;
-},{"./map":16}],13:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var doNothing = function(src, atr)
-{
-	return [];
-};
-
-module.exports = doNothing;
-},{}],14:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var ifF = function(src, atr)
-{
-  //var bool = atr[0];
-  M.$L('!!!!!!!!!! ifF   !!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  M.$L(src);
-  M.$L(M.$type(src) === 'Array');
-
-  M.$L('!!atr!!');
-  M.$L(atr[0]); // [true] 
-
-  if (M.$content(M.$mapEVAL(atr[0])))
-  {
-    return M.$mapEVAL(atr[1]);
-  }
-  else
-  {
-    return M.$mapEVAL(src);
-  }
-
-};
-
-module.exports = ifF;
-},{"./map":16}],15:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-'use strict';
-var M = require('./map');
-
-M.sequence = [];
-
-M.I = {};
-
-
-M.SEQ = function(src, i)
-{
-	return M.sequence[src + i];
-};
-
-var iterate = function(src, atr)
-{
-	//var Seq = M.$content(SEQ);
-
-	M.$L('=======ITERATE================');
-	M.$L(M.SEQ);
-
-	//atr = [M.I];
-	/*
-		if (M.I <= 1)
-		{
-			return 1;
-		}
-		else
-		{
-			return M.SEQ(M.I, -2) + M.SEQ(M.I, -1);
-		}
-	}*/
-
-
-	/*	atr = [
-				M.I,
-				[M.ifF, [[M.I, [M.bool, [M.LESSEQUAL, [5]]]], [1]]]
-			];*/
-	return [
-	{
-		iterate: atr
-	}];
-};
-
-
-module.exports = iterate;
-},{"./map":16}],16:[function(require,module,exports){
-/* jslint node: true */
-/* global $,describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = {};
-module.exports = M;
-
-var OUT;
-
-M.debug = false; //just default, change this value @ test or app.js
-var $W = M.$W = function(msg)
-{
-	console.log(msg);
-};
-
-var $L = M.$L = function(msg)
-{
-	if (M.debug)
-	{
-		if (typeof window === 'undefined')
-		{
-			var util = require('util');
-			console.log(util.inspect(msg,
-			{
-				depth: 99,
-				colors: true
-			}));
-		}
-		else
-		{
-			console.log(msg);
-		}
-	}
-};
-
-
-var $WL = M.$WL = function(msg)
-{
-	if (typeof window === 'undefined')
-	{
-		var util = require('util');
-		console.log(util.inspect(msg,
-		{
-			depth: 99,
-			colors: true
-		}));
-	}
-	else
-	{
-		console.log(msg);
-	}
-};
-
-var EVAL = M.EVAL = 'EVAL';
-var EACH = M.EACH = 'EACH';
-var CONSOLE = M.CONSOLE = 'CONSOLE';
-
-var FUNCTION_SEQUENCE = M.FUNCTION_SEQUENCE = 'FUNCTION_SEQUENCE';
-var DATA_SEQUENCE = M.DATA_SEQUENCE = 'DATA_SEQUENCE';
-
-var FUNCTION_COMPOSITION = M.FUNCTION_COMPOSITION = [];
-
-var Val = [];
-var VAL = M.VAL = function(index)
-{
-	return Val[index] || (Val[index] = {
-		wrapped_value: []
-	});
-};
-
-var EQUAL = M.EQUAL = 'EQUAL';
-var GREATER = M.GREATER = 'GREATER';
-var LESS = M.LESS = 'LESS';
-var GREATEREQUAL = M.GREATEREQUAL = 'GREATEREQUAL';
-var LESSEQUAL = M.LESSEQUAL = 'LESSEQUAL';
-
-
-
-//see http://bonsaiden.github.io/JavaScript-Garden/#types.typeof
-var $type = M.$type = function(obj)
-{
-	return Object
-		.prototype
-		.toString
-		.call(obj)
-		.slice(8, -1);
-};
-
-
-var isNatveFunction = M.isNatveFunction = function(el)
-{
-	return ($type(el) === 'Function');
-};
-
-
-//is Type Function is fundamental and used in $mapEVAL, so cannot be exported
-var isType = M.isType = function(src, atr)
-{
-	var clas;
-
-	var isFunction = function(el)
-	{
-		if (el.length === 0)
-		{
-			return false;
-		}
-		else if (isNatveFunction(el[0]))
-		{
-			return true;
-		}
-		else
-		{
-			if (el[0].length > 1)
-			{
-				if (el[0][0] === FUNCTION_COMPOSITION)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-	};
-
-	if ($type(src) === 'Array')
-	{
-		if (isFunction(src))
-			clas = FUNCTION_SEQUENCE;
-		else
-			clas = DATA_SEQUENCE;
-	}
-	else
-	{
-		clas = $type(src);
-	}
-
-	return ((src !== undefined) && (src !== null) && (clas === atr));
-
-};
-
-
-var $push = M.$push = function(arr, data)
-{
-	arr[arr.length] = data;
-};
-
-var $pop = M.$pop = function(arr)
-{
-	var data = arr[arr.length - 1];
-	arr.splice(arr.length - 1, 1);
-	return data;
-};
-
-
-var $content = M.$content = function(seq)
-{
-	return seq[0];
-};
-
-M.map = function(src, atr, out)
-{
-
-	if (typeof out !== 'undefined')
-	{
-		OUT = out;
-	}
-
-	$L('map');
-	$L(src);
-	$L(atr);
-	var $mapEVAL = M.$mapEVAL = function(src)
-	{
-		$W('############## mapMEM ################');
-		$L('----------- src --------------');
-		$W(src);
-		$L('------------------------------');
-
-		if (isType(src, 'Boolean'))
-		{
-			$W('boolean');
-		}
-
-		if (src === '')
-		{
-			return src;
-		}
-		else if (!src)
-		{
-			return src;
-		}
-		else if (isType(src, FUNCTION_SEQUENCE))
-		{
-			$L('@@@@@========  FUNCTION_SEQUENCE ======= @@@@@');
-			$L(src);
-			return src;
-		}
-		else if (isType(src, DATA_SEQUENCE))
-		{
-			$L('@@@@@======== DATA_SEQUENCE =========@@@@@');
-			if (src.length === 0) //empty pair
-			{
-				return [];
-			}
-			else if ((src.length === 1) && (src[0] === FUNCTION_COMPOSITION))
-			{
-				$L('!!!!!!!!!!!!!!=====================src === [FUNCTION_COMPOSITION]!!!!!!!!!!!!!!');
-				return $mapEVAL($pop(FUNCTION_COMPOSITION));
-			}
-			else
-			{
-				$L('----------------------------------');
-				var lastElement = src[src.length - 1];
-				$L('!!!!!!!!!!!!!!lastElement');
-				$L(lastElement);
-
-				if (!isType(lastElement, FUNCTION_SEQUENCE))
-				{
-					$W('@@@@@ unOperatable DATA_SEQUENCE @@@@@');
-					$W(src);
-					if ($content(src)
-						.hasOwnProperty('valOfI'))
-					{
-						return [$content(src)
-							.valOfI];
-					}
-					else
-						return src;
-				}
-				else
-				{
-					$L('@@@@@ Operatable DATA_SEQUENCE (the lastElement== f)@@@@@');
-					// src = [SRC, [plus, ATR]]
-					var f = lastElement[0];
-					var atr = lastElement[1];
-
-					var srcsrc = src.slice(0, src.length - 1);
-
-					var result;
-					if (isNatveFunction(f)) // _f = plus
-					{
-						if (!isType(srcsrc, DATA_SEQUENCE))
-							throw 'Invalid Format';
-						//$L('---srcsrc--------');
-						//$L(srcsrc);  [SRC]
-
-						result = f(srcsrc, atr); //plus([1],[2])
-
-						$L('---result--------');
-						$L(result);
-						return result;
-					}
-					else // _f = [FUNCTION_COMPOSITION,[plus, [1]],[plus, [2]]]
-					{
-						$L('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Custom Function &&&&&');
-						$L(f);
-
-						// [FUNCTION_COMPOSITION] = srcsrc;
-
-						$push(FUNCTION_COMPOSITION, srcsrc);
-
-						for (var i = 0; i < atr.length; i++)
-						{
-							$push(VAL(i)
-								.wrapped_value, atr[i]);
-						}
-
-						// f = _f[0][1][0];
-						// result = f(srcsrc, atr); //plus([1],[2])
-
-						result = $mapEVAL(f);
-
-						$L('---result--------');
-						$L(result);
-						return result;
-					}
-
-				}
-
-			}
-		}
-		else
-		{
-			$L('@@@@@========= ATOM/OBJECT ========@@@@@');
-			$L('---result--------');
-			$L(src);
-
-			if (src.hasOwnProperty('wrapped_value'))
-			{
-				return $pop(src.wrapped_value);
-			}
-			else if (src.hasOwnProperty('valOfI'))
-			{
-				return src.valOfI;
-			}
-			else
-			{
-				return src;
-			}
-		}
-
-	};
-	var $mapEACH = function(src)
-	{
-		//$L('---$mapEACH ');
-		//$L(src);
-		for (var i = 0; i < src.length; i++)
-		{
-			$mapEVAL(src[i]);
-		}
-		return true;
-	};
-
-
-
-	var $mapCONSOLE = function(src)
-	{
-		//$L(' ---$mapCONSOLE  fn ----- ');
-
-		var result = $mapEVAL(src);
-
-		M.$L(M.$content(result));
-		var output = M.$construct(M.$content(result));
-
-		var output1;
-
-		if ($type(output) === 'String')
-		{
-			if (output.substring(0, 1) === '"')
-				output1 = output.substring(1, output.length - 1);
-			else
-				output1 = output;
-		}
-		else
-		{
-			output1 = output;
-		}
-
-		M.$W('<@@@@@@@@@@@@@@@@@ $mapCONSOLE OUTPUT @@@@@@@@@@@@@@@@@>');
-		M.$W(output1); //side effect
-
-		if (typeof $ !== 'undefined')
-		{
-			var content = $(OUT)
-				.val();
-			$(OUT)
-				.val(content + output1 + '\n');
-		}
-
-		return result;
-	};
-
-	if ($content(atr) === EVAL)
-	{
-		return $mapEVAL(src);
-	}
-	if ($content(atr) === EACH)
-	{
-		return $mapEACH(src);
-	}
-	if ($content(atr) === CONSOLE)
-	{
-		return $mapCONSOLE(src);
-	}
-
-};
-},{"util":4}],17:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var minus = function(src, atr) {
-
-};
-
-module.exports = minus;
-},{"./map":16}],18:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var plus = function(src, atr) //plus([1], [2]) = [3]
-{
-	M.$L('==========plus');
-	M.$L('---src');
-	M.$L(src);
-	M.$L('---atr');
-	M.$L(atr);
-
-	var src1 = M.map(src, [M.EVAL]);
-	var atr1 = M.map(atr, [M.EVAL]);
-
-	M.$L('@@@src1');
-	M.$L(src1);
-	M.$L('@@@atr1');
-	M.$L(atr1);
-
-	if (!M.isType(atr1, M.DATA_SEQUENCE))
-	{
-
-		throw 'Invalid Format';
-	}
-	else if (atr1.length === 0)
-	{
-		throw 'atr is null Sequence (empty pair), invalid format  ';
-	}
-	else
-	{
-
-
-		if (atr1.length === 1)
-		{
-			var result;
-
-			if (!M.isType(M.$content(src1), M.DATA_SEQUENCE))
-			{
-				result = M.$content(src1) + M.$content(atr1);
-				// $L(result);  
-				return [result];
-			}
-			else
-			{
-				var src2 = M.map(M.$content(src1), [M.EVAL]);
-				result = [];
-				for (var i = 0; i < src2.length; i++)
-				{
-					result[i] = src2[i] + M.$content(atr1);
-				}
-
-				// $L('+++++++++++++++++++++++++++++');
-				//$L(result)  
-				return [result];
-			}
-
-
-
-		}
-		else
-		{
-			//??
-		}
-	}
-
-
-};
-
-module.exports = plus;
-},{"./map":16}],19:[function(require,module,exports){
-/* jslint node: true */
-/* global describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var M = require('./map');
-
-var take = function(src, atr)
-{
-	console.log('----take src---------');
-	M.$WL(src);
-
-	console.log('-------------');
-
-	var src1 = M.$content(M.map(src, [M.EVAL]));
-	var atr1 = M.$content(M.map(atr, [M.EVAL]));
-
-	console.log('----take src1---------');
-	M.$WL(src1);
-
-	if (!src1.hasOwnProperty('iterate'))
-	{
-		M.$WL('-----take src is Array');
-		M.$L('-----src1');
-		M.$L(src1);
-		M.$L('-----atr1');
-		M.$L(atr1);
-		return [src1.slice(0, atr1)];
-	}
-	else
-	{
-		var src2 = src1.iterate;
-		M.$WL('-----take src is Object');
-		M.$L('' + src2);
-
-		M.I.valOfI = 0;
-		var out = [];
-
-
-		while (true)
-		{
-			console.log('-------------');
-			console.log(M.I.valOfI);
-			console.log(M.$mapEVAL(src2));
-			console.log('-------------');
-
-			out[M.I.valOfI] =
-				M.sequence[M.I.valOfI] = M.$content(M.$mapEVAL(src2));
-			//src1(i);
-
-			if (out.length === atr1)
-				return [out];
-
-			M.I.valOfI++;
-		}
-	}
-};
-
-module.exports = take;
-},{"./map":16}],20:[function(require,module,exports){
-     var SpaceTime_FunctionsDIR = './SpaceTime_Functions/';
-     var SpaceTime_coreFile = 'map.js';
-     console.log('{src f}   src -f-> ??');
-     console.log('');
-     console.log('SpaceTime modlue loading...');
-      //var M = require(SpaceTime_FunctionsDIR + SpaceTime_coreFile);
-      //require(STRING) must be raw STRING to be read by Browserify
-     var M = require('./SpaceTime_Functions/map.js');
-     module.exports = M;
-     console.log('Function: map(core)');
-
-     var loadModulesFactory;
-     if (typeof window === 'undefined')
-     {
-       var modulePathHiddenFromBrowserify = './loadModulesFactory';
-       loadModulesFactory = require(modulePathHiddenFromBrowserify);
-     }
-     else
-     {
-       loadModulesFactory = require('./loadModulesFactoryBrowserify');
-     }
-
-     var obj = loadModulesFactory(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M);
-     M = obj.M;
-     var loadModules = M.loadModules = obj.func;
-
-
-      //=====================================
-     String.prototype.replaceAll = function(org, dest)
-     {
-       return this
-         .split(org)
-         .join(dest);
-     };
-
-     var sqSymbol = '_____sq_____';
-     var sqKey = 'sq___';
-
-      //==========================
-     var cmtprts = ['//', '/*', '*/', '(', ')', '\n', ' ', '　'];
-     var cmtprtsE = cmtprts.map(function(s, i)
-     {
-       return '______mark______' + i;
-     });
-      //==========================
-
-     var restoreMark = function(src)
-     {
-       // "thisisareplacement"+i  restore to normal string
-       var src1 = [];
-
-       cmtprtsE.map(function(mark, mark_i)
-       {
-         var data;
-         if (mark_i === 0)
-         {
-           data = src;
-         }
-         else
-         {
-           data = src1[mark_i - 1];
-         }
-         src1[mark_i] = data.replaceAll(mark, cmtprts[mark_i]);
-
-       });
-       return src1[src1.length - 1];
-     };
-
-     var trim = function(src)
-     {
-
-       var strgs = src.match(/"(?:[^\\"]|\\.)*"/ig);
-       var strgs1 = [];
-       var src1 = [];
-
-       var src2;
-       // escape cmtprts  during each Strings
-       if (strgs)
-       {
-         strgs.map(function(str, str_i)
-         {
-           var str1 = [];
-           cmtprts.map(function(mark, mark_i)
-           {
-             var data;
-             if (mark_i === 0)
-             {
-               data = str;
-             }
-             else
-             {
-               data = str1[mark_i - 1];
-             }
-
-             str1[mark_i] = data.replaceAll(mark, cmtprtsE[mark_i]);
-           });
-
-           strgs1[str_i] = str1[str1.length - 1];
-
-           var data1;
-
-           if (str_i === 0)
-           {
-             data1 = src;
-           }
-           else
-           {
-             data1 = src1[str_i - 1];
-           }
-
-           src1[str_i] = data1.replaceAll(strgs[str_i], strgs1[str_i]);
-
-         });
-
-         src2 = src1[src1.length - 1];
-       }
-       else
-       {
-         src2 = src;
-       }
-
-       // comment out removing
-       var re2 = new RegExp('//.*?(?=[\\n\\r]+|$)|/[*](.|\n)*?[*]/', 'g');
-       var src3 = src2
-         .replace(re2, '');
-
-       //beautifly
-       var src4 = src3.replaceAll('　', ' '); //zenkaku>hankaku
-
-       var src5 = src4.replaceAll('\n', ' '); //linebreak -> single space
-
-       var src6 = src5.replace(/(\S)\(/g, '$1 ('); //foo(  -> foo (
-       var src7 = src6.replace(/\)(\S)/g, ') $1'); //)foo  -> ) foo 
-
-       var src8 = src7.replace(/[　\s]+/g, ' '); // trim extra spaces
-       var src9 = src8.replace(/(\()\s+|\s+(\))/g, '$1$2'); //trim a space after '(' and before ')'.
-       var src10 = src9.replace(/(\[)\s+|\s+(\])/g, '$1$2'); //trim a space after '[' and before ']'.
-
-
-
-       return src10;
-
-     };
-
-
-
-     var arrays = function(src)
-     {
-       M.$W('------------- parse ----------------');
-       M.$W(src);
-
-
-       var f1 = function(src)
-       {
-         //   M.$W('some seq');
-         //    M.$W(src);
-
-         var indexHead;
-         var indexTail;
-         var count = [];
-         var previousCount;
-
-         var space = [];
-         for (var i = 0; i < src.length; i++)
-         {
-           // wt('> ' + src[i]);
-           if (i === 0)
-             previousCount = 0;
-           else
-             previousCount = count[i - 1];
-
-           if ((previousCount === 1) && (src[i] === ' '))
-             space[space.length] = i;
-
-           if (src[i] === '(')
-             count[i] = previousCount + 1;
-           else if (src[i] === ')')
-             count[i] = previousCount - 1;
-           else
-             count[i] = previousCount;
-
-           if ((previousCount === 0) && (count[i] === 1))
-           {
-             indexHead = i;
-           }
-
-           if ((previousCount === 1) && (count[i] === 0))
-           {
-             indexTail = i;
-           }
-
-           //   wt('count ' + count[i]);
-
-         }
-
-         //   M.$W(indexHead);
-         //   M.$W(indexTail);
-         //  M.$W(space);
-
-         var src1 = src.substring(indexHead + 1, indexTail);
-
-
-         var array = [];
-
-         if (space.length === 0)
-         {
-           array[0] = arrays(src1);
-           // M.$W('---return');
-           //  M.$W(array);
-           return array;
-         }
-         else
-         {
-           for (var j = 0; j < space.length; j++)
-           {
-             if (j === 0)
-             {
-               array[array.length] = arrays(src.substring(indexHead + 1, space[j]));
-             }
-             if (j === space.length - 1)
-             {
-               array[array.length] = arrays(src.substring(space[j] + 1, indexTail));
-             }
-             else
-             {
-               array[array.length] = arrays(src.substring(space[j] + 1, space[j + 1]));
-             }
-           }
-           //  M.$W('---return');
-           //   M.$W(array);
-
-           return array;
-         }
-       };
-
-
-       //------------------
-       if (src === '')
-         return src;
-       else if (!src)
-         return src;
-       else if (src.indexOf('(') === -1)
-       {
-         return src;
-       }
-       else
-       {
-
-         var count = 0;
-         var otherCharactor = false;
-         for (var i = 0; i < src.length; i++)
-         {
-           if (src[i] === '(')
-           {
-             count++;
-           }
-           else if (src[i] === ')')
-           {
-             count--;
-           }
-           else if (src[i] === ' ')
-           {
-
-           }
-           else
-           {
-             otherCharactor = true;
-           }
-         }
-
-         if (count !== 0)
-         {
-           return 'error';
-         }
-         else if (otherCharactor)
-         {
-           return f1(src);
-         }
-         else
-         {
-           return [];
-         }
-
-       }
-     };
-
-     var maybeNumberString = function(src)
-     {
-       console.log('maybeNumberString');
-       console.log(src);
-
-       var s1 = src * 1;
-       var s2 = '' + s1;
-       if (src === s2) // naked number
-       {
-         return s1;
-       }
-       else if (src.indexOf('"') !== -1) // '"some string"'
-       {
-         return restoreMark(src.substring(1, src.length - 1));
-       }
-       else
-       {
-         var src1;
-
-         if (src === '+')
-           src1 = 'plus';
-         else if (src === '-')
-           src1 = 'minus';
-         else if (src === 'if')
-           src1 = 'ifF';
-         else if (src === '==')
-           src1 = 'boolEqual';
-         else if (src === '>')
-           src1 = 'boolGreater';
-         else if (src === '<')
-           src1 = 'boolLess';
-         else if (src === '>=')
-           src1 = 'boolGreaterEqual';
-         else if (src === '<=')
-           src1 = 'boolLessEqual';
-         else
-           src1 = src;
-
-         console.log(src1);
-         return M[src1];
-       }
-
-     };
-
-
-
-     var walk = function(src)
-     {
-       //  console.log('=======');
-       // console.log(src);
-
-       if (M.$type(src) !== 'Array')
-       {
-         return maybeNumberString(src);
-       }
-       else
-       {
-         var array = [];
-         for (var i = 0; i < src.length; i++)
-         {
-           //  console.log('-------');
-           //  console.log(src[i]);
-           array[i] = walk(src[i]);
-         }
-
-         return array;
-       }
-     };
-
-
-     var $parse = M.$parse = function(src)
-     {
-       return walk(arrays(trim(src)));
-     };
-      //======================================
-
-     var $construct = M.$construct = function(result)
-     {
-       var result1;
-       if (M.$type(result) === 'Array')
-       {
-         result1 = '( ';
-         for (var i = 0; i < result.length; i++)
-         {
-           result1 += $construct(result[i]);
-           result1 += ' ';
-         }
-
-         result1 += ')';
-       }
-       else if (M.$type(result) === 'String')
-       {
-         result1 = '"' + result + '"';
-       }
-       else if (M.$type(result) === 'Function')
-       {
-         result1 = 'Function';
-       }
-       else
-       {
-         result1 = result;
-       }
-
-       return result1;
-     };
-
-     if (typeof describe === 'undefined')
-     {
-       loadModules(function()
-       {
-         M.$W('------------- SpaceTime Module is Ready ----------------');
-
-
-
-         //============================================
-         // var src = [1, [M.plus, [2]], [M.map, [M.CONSOLE]]];
-         //var src = '    ( ((  ) )  8 ) ';
-         // var src = '';
-         // var src = '(("hello   world"))';
-         // var src = '  ( 2 (+(9)) )    ';
-         //  var src = ' (FIB (take(10)) (map(CONSOLE))) ';
-         //var src = ' (SEQ  (iterate ())  (take(10)) (map(CONSOLE))) ';
-
-         // var src = ' (NATURAL  (take(10)) (map(CONSOLE))) ';
-
-         /*  (
-             FUNCTION_COMPOSITION VAL0(get(i(-(2))))(+(VAL0(get(i(-(1))))))
-             (ifF((i <= 1)(1))))
-
-         )*/
-         //  var src = '( (1 2 3 4 5)      (take(4))   (take(2)))';
-         // var src = '( () (iterate ( I ) ) (take(10)) )';
-         //  var src = '(5 (ifF  ((10 (bool (>= (11) )))  9)   )  )';
-
-         // var src = '( () (iterate (I (if ((I (bool (<= (4) )))  (1))   )  ) ) (take(10)) )';
-
-         var src = '(3 (== (3)))';
-         //var src = '(10 (bool (>= (10) )))';
-
-         M.debug = false;
-         var src1 = $parse(src);
-
-         /*  src1 = [
-          5,
-          [M.ifF, [[false], [1]]]
-        ];*/
-
-         //  src1 = [10, [M.bool, [M.GREATEREQUAL, [10]]]];
-         console.log(src1);
-         var result = M.map(src1, [M.EVAL]);
-         M.$W(' === result === ');
-         M.$W(result);
-         M.$W($construct(result));
-
-         //------------------------------------------------------------------
-       });
-     }
-
-      //=========================================
-},{"./SpaceTime_Functions/map.js":16,"./loadModulesFactoryBrowserify":21}],21:[function(require,module,exports){
-var loadModulesFactory = function(SpaceTime_FunctionsDIR, SpaceTime_coreFile, M)
-{
-  return {
-    M: M,
-    func: function(f)
-    {
-      M.bool = require('./SpaceTime_Functions/bool.js');
-      M.boolEqual = require('./SpaceTime_Functions/boolEqual.js');
-      M.boolGreater = require('./SpaceTime_Functions/boolGreater.js');
-      M.boolGreaterEqual = require('./SpaceTime_Functions/boolGreaterEqual.js');
-      M.boolLess = require('./SpaceTime_Functions/boolLess.js');
-      M.boolLessEqual = require('./SpaceTime_Functions/boolLessEqual.js');
-      M.doNothing = require('./SpaceTime_Functions/doNothing.js');
-      M.FIB = require('./SpaceTime_Functions/FIB.js');
-      M.ifF = require('./SpaceTime_Functions/ifF.js');
-      M.iterate = require('./SpaceTime_Functions/iterate.js');
-      M.minus = require('./SpaceTime_Functions/minus.js');
-      M.NATURAL = require('./SpaceTime_Functions/NATURAL.js');
-      M.plus = require('./SpaceTime_Functions/plus.js');
-      M.take = require('./SpaceTime_Functions/take.js');
-
-      console.log('SpaceTime modlue load complete.');
-      f();
-    }
-  };
-};
-
-module.exports = loadModulesFactory;
-},{"./SpaceTime_Functions/FIB.js":5,"./SpaceTime_Functions/NATURAL.js":6,"./SpaceTime_Functions/bool.js":7,"./SpaceTime_Functions/boolEqual.js":8,"./SpaceTime_Functions/boolGreater.js":9,"./SpaceTime_Functions/boolGreaterEqual.js":10,"./SpaceTime_Functions/boolLess.js":11,"./SpaceTime_Functions/boolLessEqual.js":12,"./SpaceTime_Functions/doNothing.js":13,"./SpaceTime_Functions/ifF.js":14,"./SpaceTime_Functions/iterate.js":15,"./SpaceTime_Functions/minus.js":17,"./SpaceTime_Functions/plus.js":18,"./SpaceTime_Functions/take.js":19}],22:[function(require,module,exports){
-/* jslint node: true */
-/* global jQuery,$, window, document, alert, describe, it, before, beforeEach, after, afterEach */
-
-'use strict';
-
-var debug = false;
-
-var M = require('/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js');
-
-$(document)
-	.ready(function()
-	{
-
-		init();
-	});
-
-var init = function()
-{
-
-	setTimeout(function()
-	{
-		$('#input1')
-			.val('("Hello world"  (map (CONSOLE)) )');
-		$('#input1')
-			.focusEnd();
-
-		evaluation();
-	}, 2000);
-
-	$(document)
-		.on('input propertychange', '#input1', function()
-		{
-			evaluation();
-		});
-
-	var evaluation = function()
-	{
-		$('#console1')
-			.val('');
-
-		var src = $('#input1')
-			.val();
-
-		var src1 = M.$parse(src);
-
-		//console.log('src1 to mamMemory');
-		//console.log(src1);
-
-		var result = M.map(src1, [M.EVAL], '#console1');
-
-		$('#evaluation1')
-			.val(M.$construct(result));
-	};
-
-};
-
-
-$.fn.focusEnd = function()
-{
-	var value = $(this)
-		.val();
-	$(this)
-		.val('');
-	$(this)
-		.focus();
-	$(this)
-		.val(value);
-	return this;
-};
-},{"/Volumes/GoogleDrive15/GoogleDrive/SpaceTime/app.js":20}]},{},[22])
+}).call(this,require("/Volumes/GD15/gd/SpaceTimeProgrammingLanguage.github.io/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./support/isBuffer":21,"/Volumes/GD15/gd/SpaceTimeProgrammingLanguage.github.io/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":20,"inherits":19}]},{},[18])
